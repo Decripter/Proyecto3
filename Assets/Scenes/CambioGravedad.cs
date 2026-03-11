@@ -33,7 +33,7 @@ public class CambioGravedad : MonoBehaviour
     }
     void FixedUpdate()
     {
-        // Desactivamos la gravedad normal y aplicamos una hacia ARRIBA
+        // Desactivamos la gravedad normal y aplicamos una hacia arriba de manera constante
         if (!Invertir)
         {
             rb.useGravity = false;

@@ -46,7 +46,6 @@ public class TPable : MonoBehaviour
             Vector3 posRelativa = salida.InverseTransformPoint(transform.position);
             return posRelativa.z > 0.005f; //
         });
-
         Physics.IgnoreLayerCollision(7, 8, false);
         Cruzando = false;
     }

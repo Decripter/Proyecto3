@@ -6,10 +6,11 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.SocialPlatforms;*/
 
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 // Estos son seguros para Build:
 using UnityEngine.InputSystem;
-using Unity.Mathematics;
+using UnityEngine.InputSystem.XR;
 
 //Physics.IgnoreCollision(other (el objeto), colliderDeLaPared, true); (usarlo con el raycast de la pared de atrás)
 public class Camara_Portal : MonoBehaviour
@@ -28,7 +29,6 @@ public class Camara_Portal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
 
         if (other.TryGetComponent<TPable>(out TPable obj))
         {
@@ -57,6 +57,8 @@ public class Camara_Portal : MonoBehaviour
         var obj = other.GetComponent<TPable>();
         if (obj != null)
         {
+            Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1f);
+
             // Calculamos si el centro del objeto cruzó el plano
             Vector3 posRelativa = transform.InverseTransformPoint(other.transform.position);
 
@@ -107,29 +109,46 @@ public class Camara_Portal : MonoBehaviour
 
     private void Update()
     {
-        Vector3 portal_Jugador = CamaraJugador.transform.position - transform.position;
+        Vector3 portal_Camara = CamaraJugador.transform.position - transform.position; //Dirección
 
-        float puntoPos = Vector3.Dot(transform.forward, portal_Jugador);
+        float puntoPos = Vector3.Dot(transform.forward, portal_Camara);
 
         /*Vector3 posRelativa = transform.InverseTransformPoint(CamaraJugador.transform.position);
         bool estaCerca = Mathf.Abs(posRelativa.x) < 0.002f && Mathf.Abs(posRelativa.y) < 0.002f;*/
 
-        Vector3 portal_camara = Jugador.transform.position - transform.position;
 
-        float puntoPos2 = Vector3.Dot(transform.forward, portal_camara);
-        
+        Vector3 portal_Jugador = Jugador.transform.position - transform.position;
+
+        float puntoPos2 = Vector3.Dot(transform.forward, portal_Jugador);
+
+
 
         //if (puntoPos < CamaraJugador.nearClipPlane)
 
         if (puntoPos < 0f && Trigger || puntoPos2 < umbral && Trigger)
         {
-            float puntoAngulo = Vector3.Dot(transform.forward, CamaraJugador.transform.forward);
+                float puntoAngulo = Vector3.Dot(transform.forward, CamaraJugador.transform.forward);
                 CharacterController controller = Jugador.GetComponent<CharacterController>();
                 controller.enabled = false;
 
+
+            /*
+            Debug.DrawRay(transform.position, -transform.forward, Color.blue);
+            if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1f))
+            {
+                Physics.IgnoreCollision(controller, hit.collider, true);
+            }
+            Debug.DrawRay(OtroPortal.position, -OtroPortal.forward, Color.red);
+            if (Physics.Raycast(OtroPortal.position, -OtroPortal.forward, out RaycastHit hit2, 1f))
+            {
+                // LE DECIMOS A UNITY: "Este objeto específico ignora esta pared específica"
+                Physics.IgnoreCollision(controller, hit2.collider, true);
+            }*/
+
+            
                 Physics.IgnoreLayerCollision(3, 8, true);
                 Physics.IgnoreLayerCollision(3, 9, true);
-
+            
                 Tp();
 
                 controller.enabled = true;
@@ -156,7 +175,7 @@ public class Camara_Portal : MonoBehaviour
         //CamaraJugador.transform.rotation = OtroPortal.rotation * (Quaternion.Euler(0, 180, 0) * rotRelativa);
 
         Rigidbody rb = Jugador.GetComponent<Rigidbody>();
-
+        
         if (rb != null)
         {
             // 1. Velocidad relativa al Portal A
@@ -176,9 +195,22 @@ public class Camara_Portal : MonoBehaviour
             Vector3 posRelativa = OtroPortal.InverseTransformPoint(Jugador.transform.position);
             return posRelativa.z > 0.005f; //
         });
+        
+        
+        /*CharacterController controller = Jugador.GetComponent<CharacterController>();
+        if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1f))
+        {
+            Physics.IgnoreCollision(controller, hit.collider, false);
+        }
+
+        if (Physics.Raycast(OtroPortal.position, -OtroPortal.forward, out RaycastHit hit2, 1f))
+        {
+            Physics.IgnoreCollision(controller, hit2.collider, false);
+        }*/
 
         Physics.IgnoreLayerCollision(3, 8, false);
         Physics.IgnoreLayerCollision(3, 9, false);
+
         Trigger = false;
 
 

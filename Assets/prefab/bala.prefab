@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8043747875059413742}
   - component: {fileID: -2978589048403427450}
   - component: {fileID: 8438275344326423312}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bala
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbf1585f21903c41994b5a1a093db65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bala
-  speed: 10
+  speed: 15
 --- !u!114 &8438275344326423312
 MonoBehaviour:
   m_ObjectHideFlags: 0
