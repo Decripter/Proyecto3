@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - PortalTrigger
+  - GroundChecker
   layers:
   - Default
   - TransparentFX

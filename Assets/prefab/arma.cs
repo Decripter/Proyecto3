@@ -29,7 +29,7 @@ public class arma : MonoBehaviour
     void Update()
     {
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetKeyDown(KeyCode.LeftShift))
         {
             intento();
         }

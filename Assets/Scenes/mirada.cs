@@ -8,17 +8,23 @@ public class mirada : MonoBehaviour
     public float speed = 100f;
     private float girox = 0f;
 
+    public GameObject PortalA;
+    public GameObject PortalB;
+
     private Rigidbody rb;
     private FixedJoint fj;
     private Rigidbody rbExt;
 
     public float rayDistance;
+    public float DistanciaPortal;
 
     public bool Ocupado;
     private CambioGravedad Gravedad;
 
     public LayerMask Objeto;
-    
+    public LayerMask MuroPortal;
+
+    public float SepararX;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -82,5 +88,32 @@ public class mirada : MonoBehaviour
             }
         }
 
+
+        RaycastHit hitPared;
+        if (Physics.Raycast(transform.position, transform.forward, out hitPared, DistanciaPortal, MuroPortal) && Input.GetMouseButtonDown(1))
+        {
+            //Vector3 Separar = new Vector3(SepararX, 0f, 0f);
+
+            PortalA.transform.position = hitPared.point + (hitPared.normal*SepararX);
+            //PortalA.transform.rotation = Quaternion.FromToRotation(PortalA.transform.forward, hitPared.normal) * PortalA.transform.rotation;
+            PortalA.transform.rotation = Quaternion.LookRotation(hitPared.normal);
+            Debug.Log("Portal");
+        }
+
+        RaycastHit hitPared2;
+
+        if (Physics.Raycast(transform.position, transform.forward, out hitPared2, DistanciaPortal, MuroPortal) && Input.GetMouseButtonDown(0))
+        {
+            //Vector3 Separar = new Vector3(SepararX, 0f, 0f);
+
+            PortalB.transform.position = hitPared2.point + (hitPared2.normal*SepararX);
+            //PortalB.transform.rotation = Quaternion.FromToRotation(PortalB.transform.forward, hitPared2.normal) * PortalB.transform.rotation;
+            PortalB.transform.rotation = Quaternion.LookRotation(hitPared2.normal);
+            Debug.Log("Portal");
+        }
+        Debug.DrawRay(transform.position, transform.forward * DistanciaPortal, Color.blue);
+
     }
+
+
 }

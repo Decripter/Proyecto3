@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     public float gravedad = -9.8f;
 
     private GroundChecker _GroundChecker;
+    public PortalChecker PortalChecker;
     void Start()
     {
         _Controller = GetComponent<CharacterController>();
@@ -44,7 +45,7 @@ public class Movement : MonoBehaviour
     private void mover()
     {
 
-        if (_GroundChecker.Tocando)
+        if (_GroundChecker.Tocando && !PortalChecker.EnZonaDePortal)
         {
             speed = GroundSpeed;
         }
