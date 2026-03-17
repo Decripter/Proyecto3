@@ -22,7 +22,7 @@ public class Camara_Portal : MonoBehaviour
     public Camera OtraCamara;
     public Transform OtroPortal;
 
-    public bool Trigger;
+    public bool Player_Cerca;
     BoxCollider CollPortal;
     public float umbral = 0.31f;
     public bool esPlayer = false;
@@ -43,13 +43,13 @@ public class Camara_Portal : MonoBehaviour
         else 
         {
          esPlayer = true;
-         Trigger = true;
+         Player_Cerca = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Trigger = false;
+        Player_Cerca = false;
     }
 
     private void OnTriggerStay(Collider other)
@@ -66,6 +66,9 @@ public class Camara_Portal : MonoBehaviour
             {
                 obj.Teletransportar(transform, OtroPortal);
             }
+        }
+        else
+        {
         }
     }
 
@@ -117,15 +120,16 @@ public class Camara_Portal : MonoBehaviour
         bool estaCerca = Mathf.Abs(posRelativa.x) < 0.002f && Mathf.Abs(posRelativa.y) < 0.002f;*/
 
 
-        Vector3 portal_Jugador = Jugador.transform.position - transform.position;
+        //Vector3 portal_Jugador = Jugador.transform.position - transform.position;
 
+        Vector3 portal_Jugador = CamaraJugador.transform.position - transform.position;
         float puntoPos2 = Vector3.Dot(transform.forward, portal_Jugador);
 
 
 
         //if (puntoPos < CamaraJugador.nearClipPlane)
-
-        if (puntoPos < 0f && Trigger || puntoPos2 < umbral && Trigger)
+        //if (puntoPos < 0f && Trigger || puntoPos2 < umbral && Trigger)
+        if (puntoPos < 0f && Player_Cerca /*|| puntoPos2 > 0f && Trigger*/)
         {
                 float puntoAngulo = Vector3.Dot(transform.forward, CamaraJugador.transform.forward);
                 CharacterController controller = Jugador.GetComponent<CharacterController>();
@@ -147,7 +151,6 @@ public class Camara_Portal : MonoBehaviour
 
             
                 Physics.IgnoreLayerCollision(3, 8, true);
-                Physics.IgnoreLayerCollision(3, 9, true);
             
                 Tp();
 
@@ -155,6 +158,7 @@ public class Camara_Portal : MonoBehaviour
 
 
             StartCoroutine(ReactivarColision());
+            StartCoroutine(ReactivarColision2());
             /*if(puntoAngulo < 0f)
             {
             
@@ -174,46 +178,47 @@ public class Camara_Portal : MonoBehaviour
         Jugador.transform.rotation = OtroPortal.rotation * (Quaternion.Euler(0, 180, 0) * rotRelativa);
         //CamaraJugador.transform.rotation = OtroPortal.rotation * (Quaternion.Euler(0, 180, 0) * rotRelativa);
 
-        Rigidbody rb = Jugador.GetComponent<Rigidbody>();
-        
-        if (rb != null)
+        Movement Movement_Player = Jugador.GetComponent<Movement>();
+        CharacterController _Controller = Jugador.GetComponent<CharacterController>();
+
+        if (_Controller != null)
         {
-            // 1. Velocidad relativa al Portal A
-            Vector3 velocidadLocal = transform.InverseTransformDirection(rb.linearVelocity);
-            // 2. Girar 180 grados y pasar al mundo del Portal B
-            Vector3 nuevaVelocidadMundo = OtroPortal.TransformDirection(Quaternion.Euler(0, 180, 0) * velocidadLocal);
-            rb.linearVelocity = nuevaVelocidadMundo;
+            Vector3 velocidadLocalPlayer;
+            if(_Controller != null)
+            {
+                velocidadLocalPlayer = _Controller.velocity;
+                Vector3 velLocal = transform.InverseTransformDirection(velocidadLocalPlayer);
+                Vector3 velGirada = Quaternion.Euler(0, 180, 0) * velLocal;
+                Vector3 nuevaVelocidadMundo = OtroPortal.TransformDirection(velGirada);
+                Movement_Player.AplicarVelocidad(nuevaVelocidadMundo);
+
+            }
         }
 
 
     }
-
+    private IEnumerator ReactivarColision2()
+    {
+        yield return new WaitUntil(() => {
+            //Vector3 posRelativa = OtroPortal.InverseTransformPoint(Jugador.transform.position);
+            Vector3 posRelativa = OtroPortal.InverseTransformPoint(Jugador.transform.position);
+            return posRelativa.z > 0.005f; //
+        });
+        Physics.IgnoreLayerCollision(3, 8, false);
+        //8 Muro Portal
+    }
     private IEnumerator ReactivarColision()
     {
         // Esperamos a que el jugador esté completamente "fuera" del plano
         yield return new WaitUntil(() => {
-            Vector3 posRelativa = OtroPortal.InverseTransformPoint(Jugador.transform.position);
-            return posRelativa.z > 0.005f; //
+            //Vector3 posRelativa = OtroPortal.InverseTransformPoint(Jugador.transform.position);
+            Vector3 posRelativa = OtroPortal.InverseTransformPoint(CamaraJugador.transform.position);
+            return posRelativa.z > 0.00005f; //
         });
-        
-        
-        /*CharacterController controller = Jugador.GetComponent<CharacterController>();
-        if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1f))
-        {
-            Physics.IgnoreCollision(controller, hit.collider, false);
-        }
 
-        if (Physics.Raycast(OtroPortal.position, -OtroPortal.forward, out RaycastHit hit2, 1f))
-        {
-            Physics.IgnoreCollision(controller, hit2.collider, false);
-        }*/
-
-        Physics.IgnoreLayerCollision(3, 8, false);
-        Physics.IgnoreLayerCollision(3, 9, false);
-
-        Trigger = false;
-
-
+        //Physics.IgnoreLayerCollision(3, 9, false);
+        //9 Muro Portal, que encima, ni hace falta
+        Player_Cerca = false;
 
         float duracion = 0.5f; // Medio segundo para enderezarse
         float tiempoPasado = 0f;

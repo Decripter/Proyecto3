@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     public float speed;
     public float TargetSpeed;
     public Vector3 currentSpeed;
-
+    public float friccionAire = 2f; //(más alto = frena antes)
 
     private Vector3 fuerza;
     public float gravedad = -9.8f;
@@ -71,8 +71,25 @@ public class Movement : MonoBehaviour
             fuerza.y = -2f;
         }
 
+        float frenado;
+        if (_GroundChecker.Tocando)
+        {
+            frenado = 10f;
+        }
+        else
+        {
+            frenado = friccionAire;
+        } // Más fricción en el suelo
+        fuerza.x = Mathf.Lerp(fuerza.x, 0, frenado * Time.deltaTime);
+        fuerza.z = Mathf.Lerp(fuerza.z, 0, frenado * Time.deltaTime);
+
         fuerza.y += gravedad * Time.deltaTime;
         _Controller.Move(fuerza * Time.deltaTime);
+    }
+
+    public void AplicarVelocidad(Vector3 Velocidad)
+    {
+        fuerza = Velocidad;
     }
 
 }
