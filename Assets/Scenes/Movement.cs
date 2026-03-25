@@ -4,22 +4,26 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private CharacterController _Controller;
-    public float AirSpeed = 5f;
-    public float GroundSpeed = 15f;
+    public float AirSpeed;
+    public float GroundSpeed;
 
-    public float jumpspeed = 6.9f;
+    public float jumpspeed;
 
-    public float aceleracion = 5f;
+    public float aceleracion;
     public float speed;
     public float TargetSpeed;
     public Vector3 currentSpeed;
-    public float friccionAire = 2f; //(más alto = frena antes)
+    public float friccionAire; //(más alto = frena antes)
 
     private Vector3 fuerza;
-    public float gravedad = -9.8f;
+    public float gravedad;
+
+
 
     private GroundChecker _GroundChecker;
     public PortalChecker PortalChecker;
+
+    public float empuje;
     void Start()
     {
         _Controller = GetComponent<CharacterController>();
@@ -58,6 +62,7 @@ public class Movement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
         
         Vector3 movertarget = (transform.right * x + transform.forward * z) * speed; //El move original
+
         currentSpeed = Vector3.Lerp(currentSpeed, movertarget, aceleracion * Time.deltaTime);
         
 
@@ -90,7 +95,7 @@ public class Movement : MonoBehaviour
 
     public void AplicarVelocidad(Vector3 Velocidad)
     {
-        fuerza = Velocidad;
+        fuerza = Velocidad * empuje;
     }
 
 }

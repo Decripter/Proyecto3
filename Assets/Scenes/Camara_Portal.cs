@@ -23,7 +23,6 @@ public class Camara_Portal : MonoBehaviour
     public Transform OtroPortal;
 
     public bool Player_Cerca;
-    BoxCollider CollPortal;
     public float umbral = 0.31f;
     public bool esPlayer = false;
 
@@ -74,7 +73,6 @@ public class Camara_Portal : MonoBehaviour
 
     void Start()
     {
-        CollPortal = GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
@@ -116,49 +114,15 @@ public class Camara_Portal : MonoBehaviour
 
         float puntoPos = Vector3.Dot(transform.forward, portal_Camara);
 
-        /*Vector3 posRelativa = transform.InverseTransformPoint(CamaraJugador.transform.position);
-        bool estaCerca = Mathf.Abs(posRelativa.x) < 0.002f && Mathf.Abs(posRelativa.y) < 0.002f;*/
-
-
-        //Vector3 portal_Jugador = Jugador.transform.position - transform.position;
-
         Vector3 portal_Jugador = CamaraJugador.transform.position - transform.position;
         float puntoPos2 = Vector3.Dot(transform.forward, portal_Jugador);
 
-
-
-        //if (puntoPos < CamaraJugador.nearClipPlane)
-        //if (puntoPos < 0f && Trigger || puntoPos2 < umbral && Trigger)
-        if (puntoPos < 0f && Player_Cerca /*|| puntoPos2 > 0f && Trigger*/)
+        if (puntoPos < 0f && Player_Cerca)
         {
                 float puntoAngulo = Vector3.Dot(transform.forward, CamaraJugador.transform.forward);
                 CharacterController controller = Jugador.GetComponent<CharacterController>();
-                controller.enabled = false;
-
-
-            /*
-            Debug.DrawRay(transform.position, -transform.forward, Color.blue);
-            if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1f))
-            {
-                Physics.IgnoreCollision(controller, hit.collider, true);
-            }
-            Debug.DrawRay(OtroPortal.position, -OtroPortal.forward, Color.red);
-            if (Physics.Raycast(OtroPortal.position, -OtroPortal.forward, out RaycastHit hit2, 1f))
-            {
-                // LE DECIMOS A UNITY: "Este objeto específico ignora esta pared específica"
-                Physics.IgnoreCollision(controller, hit2.collider, true);
-            }*/
-
-            
                 Physics.IgnoreLayerCollision(3, 8, true);
-            
                 Tp();
-
-                controller.enabled = true;
-
-
-            StartCoroutine(ReactivarColision());
-            StartCoroutine(ReactivarColision2());
             /*if(puntoAngulo < 0f)
             {
             
@@ -169,33 +133,29 @@ public class Camara_Portal : MonoBehaviour
 
     void Tp()
     {
-        Vector3 posRelativa = transform.InverseTransformPoint(Jugador.transform.position);
-        Vector3 posInvertida = Quaternion.Euler(0, 180, 0) * posRelativa;
+        Movement Movement_Player = Jugador.GetComponent<Movement>();
+        CharacterController _Controller = Jugador.GetComponent<CharacterController>();
 
+        Vector3 velocidadLocalPlayer;
+        velocidadLocalPlayer = _Controller.velocity;
+
+        _Controller.enabled = false;
+
+        Vector3 posRelativa = transform.InverseTransformPoint(Jugador.transform.position);
+        Vector3 posInvertida = Quaternion.Euler(0,180,0) * posRelativa;
         Jugador.transform.position = OtroPortal.TransformPoint(posInvertida);
 
         Quaternion rotRelativa = Quaternion.Inverse(transform.rotation) * Jugador.transform.rotation;
         Jugador.transform.rotation = OtroPortal.rotation * (Quaternion.Euler(0, 180, 0) * rotRelativa);
-        //CamaraJugador.transform.rotation = OtroPortal.rotation * (Quaternion.Euler(0, 180, 0) * rotRelativa);
-
-        Movement Movement_Player = Jugador.GetComponent<Movement>();
-        CharacterController _Controller = Jugador.GetComponent<CharacterController>();
-
-        if (_Controller != null)
-        {
-            Vector3 velocidadLocalPlayer;
-            if(_Controller != null)
-            {
-                velocidadLocalPlayer = _Controller.velocity;
+            /*
                 Vector3 velLocal = transform.InverseTransformDirection(velocidadLocalPlayer);
                 Vector3 velGirada = Quaternion.Euler(0, 180, 0) * velLocal;
                 Vector3 nuevaVelocidadMundo = OtroPortal.TransformDirection(velGirada);
-                Movement_Player.AplicarVelocidad(nuevaVelocidadMundo);
+                Movement_Player.AplicarVelocidad(nuevaVelocidadMundo);*/
 
-            }
-        }
-
-
+        _Controller.enabled = true;
+        StartCoroutine(ReactivarColision());
+        StartCoroutine(ReactivarColision2());
     }
     private IEnumerator ReactivarColision2()
     {
