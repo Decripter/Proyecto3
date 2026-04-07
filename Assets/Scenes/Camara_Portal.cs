@@ -120,7 +120,6 @@ public class Camara_Portal : MonoBehaviour
         if (puntoPos < 0f && Player_Cerca)
         {
                 float puntoAngulo = Vector3.Dot(transform.forward, CamaraJugador.transform.forward);
-                CharacterController controller = Jugador.GetComponent<CharacterController>();
                 Physics.IgnoreLayerCollision(3, 8, true);
                 Tp();
             /*if(puntoAngulo < 0f)
@@ -134,26 +133,21 @@ public class Camara_Portal : MonoBehaviour
     void Tp()
     {
         Movement Movement_Player = Jugador.GetComponent<Movement>();
-        CharacterController _Controller = Jugador.GetComponent<CharacterController>();
-
-        Vector3 velocidadLocalPlayer;
-        velocidadLocalPlayer = _Controller.velocity;
-
-        _Controller.enabled = false;
+        Rigidbody rb = Jugador.GetComponent<Rigidbody>();
 
         Vector3 posRelativa = transform.InverseTransformPoint(Jugador.transform.position);
         Vector3 posInvertida = Quaternion.Euler(0,180,0) * posRelativa;
-        Jugador.transform.position = OtroPortal.TransformPoint(posInvertida);
+        rb.position = OtroPortal.TransformPoint(posInvertida);
 
         Quaternion rotRelativa = Quaternion.Inverse(transform.rotation) * Jugador.transform.rotation;
-        Jugador.transform.rotation = OtroPortal.rotation * (Quaternion.Euler(0, 180, 0) * rotRelativa);
-            /*
-                Vector3 velLocal = transform.InverseTransformDirection(velocidadLocalPlayer);
-                Vector3 velGirada = Quaternion.Euler(0, 180, 0) * velLocal;
-                Vector3 nuevaVelocidadMundo = OtroPortal.TransformDirection(velGirada);
-                Movement_Player.AplicarVelocidad(nuevaVelocidadMundo);*/
+        rb.rotation = OtroPortal.rotation * (Quaternion.Euler(0, 180, 0) * rotRelativa);
 
-        _Controller.enabled = true;
+        
+
+        Vector3 speedLocal = transform.InverseTransformDirection(rb.linearVelocity);
+        rb.linearVelocity = OtroPortal.TransformDirection(Quaternion.Euler(0, 180, 0) * speedLocal);
+
+
         StartCoroutine(ReactivarColision());
         StartCoroutine(ReactivarColision2());
     }
@@ -176,20 +170,21 @@ public class Camara_Portal : MonoBehaviour
             return posRelativa.z > 0.00005f; //
         });
 
-        //Physics.IgnoreLayerCollision(3, 9, false);
+        //Ponhysics.IgnoreLayerCollisi(3, 9, false);
         //9 Muro Portal, que encima, ni hace falta
         Player_Cerca = false;
+
+        Rigidbody rb = Jugador.gameObject.GetComponent<Rigidbody>();
 
         float duracion = 0.5f; // Medio segundo para enderezarse
         float tiempoPasado = 0f;
 
-        Quaternion rotInicial = Jugador.transform.rotation;
+        Quaternion rotInicial = rb.rotation;
 
- 
         Vector3 eulerActual = rotInicial.eulerAngles;
         Quaternion rotDestino = Quaternion.Euler(0, eulerActual.y, 0);
 
-
+        //rb.rotation = OtroPortal.rotation * (Quaternion.Euler(0, 180, 0) * rotRelativa);
         if (Quaternion.Angle(rotInicial, rotDestino) > 0.1f && esPlayer)
         {
             while (tiempoPasado < duracion)
@@ -200,16 +195,16 @@ public class Camara_Portal : MonoBehaviour
                 float tSuave = t * t * (3f - 2f * t);
 
                 // gira el ratón mientras se endereza (para no perder el control)
-                Vector3 eulerVivo = Jugador.transform.rotation.eulerAngles;
+                Vector3 eulerVivo = rb.rotation.eulerAngles;
                 Quaternion destinoVivo = Quaternion.Euler(0, eulerVivo.y, 0);
 
-                Jugador.transform.rotation = Quaternion.Slerp(Jugador.transform.rotation, destinoVivo, tSuave);
+                rb.rotation = Quaternion.Slerp(rb.rotation, destinoVivo, tSuave);
 
                 yield return null;
             }
             // Ajuste final perfecto
-            Vector3 finalY = Jugador.transform.rotation.eulerAngles;
-            Jugador.transform.rotation = Quaternion.Euler(0, finalY.y, 0);
+            Vector3 finalY = rb.rotation.eulerAngles;
+            rb.rotation = Quaternion.Euler(0, finalY.y, 0);
         }
         esPlayer = false;
     }

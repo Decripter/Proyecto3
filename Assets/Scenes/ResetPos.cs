@@ -15,8 +15,7 @@ public class ResetPos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CharacterController controller = transform.GetComponent<CharacterController>();
-        controller.enabled = false;
+        //Rigidbody rb = transform.GetComponent<Rigidbody>();
         if (Input.GetKeyDown(KeyCode.R))
         {
             transform.position = TP_R.transform.position;
@@ -32,6 +31,5 @@ public class ResetPos : MonoBehaviour
             transform.position = TP_Y.transform.position;
             transform.rotation = TP_Y.transform.rotation;
         }
-        controller.enabled = true;
     }
 }

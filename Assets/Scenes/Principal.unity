@@ -2997,7 +2997,6 @@ GameObject:
   - component: {fileID: 503914556}
   - component: {fileID: 503914555}
   - component: {fileID: 503914562}
-  - component: {fileID: 503914554}
   - component: {fileID: 503914559}
   - component: {fileID: 503914560}
   - component: {fileID: 503914563}
@@ -3008,31 +3007,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!143 &503914554
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503914553}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &503914555
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3049,8 +3023,8 @@ CapsuleCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -3144,15 +3118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53670dda12ef0234dbc05e3cf17097b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
-  AirSpeed: 7
-  GroundSpeed: 7
-  jumpspeed: 6.9
-  aceleracion: 15
-  speed: 15
-  TargetSpeed: 0
-  currentSpeed: {x: 0, y: 0, z: 0}
-  friccionAire: 2
-  gravedad: -20
+  Speed: 10
+  Salto: 5
   PortalChecker: {fileID: 240119479}
   empuje: 1.5
 --- !u!114 &503914560
@@ -3162,7 +3129,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503914553}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bb2d834c2c027d4aa5978b326e390a1, type: 3}
   m_Name: 
@@ -3190,11 +3157,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 2
 --- !u!114 &503914563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6201,6 +6168,79 @@ Transform:
   - {fileID: 427060510}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &959440482
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 39.219
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 39.219
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 39.219
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 61.308
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.09
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 106.83
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6762632363494248299, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e4eb070591191464aadad8edac3e1179, type: 2}
+    - target: {fileID: 919132149155446097, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
+      propertyPath: m_Name
+      value: Space_Substance
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 78be56e6007cbde458dc5c0b1f8d71f4, type: 3}
 --- !u!1001 &962675557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8659,8 +8699,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -9529,7 +9569,7 @@ MonoBehaviour:
   OtraCamara: {fileID: 1917651441}
   OtroPortal: {fileID: 1056902302}
   Player_Cerca: 0
-  umbral: 0.5
+  umbral: 0.001
   esPlayer: 0
 --- !u!65 &1459982987
 BoxCollider:
@@ -12890,3 +12930,4 @@ SceneRoots:
   - {fileID: 962675557}
   - {fileID: 1608265525}
   - {fileID: 2008635925}
+  - {fileID: 959440482}

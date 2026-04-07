@@ -3,22 +3,12 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private CharacterController _Controller;
-    public float AirSpeed;
-    public float GroundSpeed;
-
-    public float jumpspeed;
-
-    public float aceleracion;
-    public float speed;
-    public float TargetSpeed;
-    public Vector3 currentSpeed;
-    public float friccionAire; //(más alto = frena antes)
-
-    private Vector3 fuerza;
-    public float gravedad;
-
-
+    private Vector3 Vector_Movimiento;
+    private Rigidbody rb;
+    
+    [SerializeField]private float Speed;
+    
+    [SerializeField]private float Salto;
 
     private GroundChecker _GroundChecker;
     public PortalChecker PortalChecker;
@@ -26,76 +16,60 @@ public class Movement : MonoBehaviour
     public float empuje;
     void Start()
     {
-        _Controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
         _GroundChecker = GetComponentInChildren<GroundChecker>();
     }
 
     
     void Update()
     {
-        mover();
-        AplicarGravedad();
+        Vector_Movimiento = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         if (Input.GetKeyDown(KeyCode.Space) && _GroundChecker.Tocando)
         {
             salto();
         }
     }
 
+    private void FixedUpdate()
+    {
+        mover();
+        AplicarGravedad();
+
+    }
+
     private void salto()
     {
-            fuerza.y = jumpspeed;
+        if (Input.GetKeyDown(KeyCode.Space) && _GroundChecker.Tocando)
+        {
+            rb.AddForce(Vector3.up * Salto, ForceMode.Impulse);
+        }
     }
 
     private void mover()
     {
+        Vector3 MoverVector = transform.TransformDirection(Vector_Movimiento) * Speed;
+        rb.linearVelocity = new Vector3(MoverVector.x, rb.linearVelocity.y, MoverVector.z);
 
         if (_GroundChecker.Tocando && !PortalChecker.EnZonaDePortal)
         {
-            speed = GroundSpeed;
+
         }
         else
         {
-            speed = AirSpeed;
+
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        
-        Vector3 movertarget = (transform.right * x + transform.forward * z) * speed; //El move original
 
-        currentSpeed = Vector3.Lerp(currentSpeed, movertarget, aceleracion * Time.deltaTime);
-        
-
-       _Controller.Move(currentSpeed * Time.deltaTime);
     }
 
     private void AplicarGravedad()
     {
 
-        if(_GroundChecker.Tocando && fuerza.y < 0)
-        {
-            fuerza.y = -2f;
-        }
-
-        float frenado;
-        if (_GroundChecker.Tocando)
-        {
-            frenado = 10f;
-        }
-        else
-        {
-            frenado = friccionAire;
-        } // Más fricción en el suelo
-        fuerza.x = Mathf.Lerp(fuerza.x, 0, frenado * Time.deltaTime);
-        fuerza.z = Mathf.Lerp(fuerza.z, 0, frenado * Time.deltaTime);
-
-        fuerza.y += gravedad * Time.deltaTime;
-        _Controller.Move(fuerza * Time.deltaTime);
     }
 
     public void AplicarVelocidad(Vector3 Velocidad)
     {
-        fuerza = Velocidad * empuje;
+
     }
 
 }
