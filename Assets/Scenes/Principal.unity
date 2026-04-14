@@ -3118,8 +3118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53670dda12ef0234dbc05e3cf17097b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
-  Speed: 10
+  Speed: 3
   Salto: 5
+  gravedad: -9.81
+  verticalVelocity: 0
+  momentumPortal: {x: 0, y: 0, z: 0}
   PortalChecker: {fileID: 240119479}
   empuje: 1.5
 --- !u!114 &503914560

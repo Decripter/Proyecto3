@@ -142,10 +142,8 @@ public class Camara_Portal : MonoBehaviour
         Quaternion rotRelativa = Quaternion.Inverse(transform.rotation) * Jugador.transform.rotation;
         rb.rotation = OtroPortal.rotation * (Quaternion.Euler(0, 180, 0) * rotRelativa);
 
-        
-
-        Vector3 speedLocal = transform.InverseTransformDirection(rb.linearVelocity);
-        rb.linearVelocity = OtroPortal.TransformDirection(Quaternion.Euler(0, 180, 0) * speedLocal);
+        Vector3 Velocidad = transform.InverseTransformPoint(rb.linearVelocity);
+        rb.linearVelocity = -OtroPortal.transform.forward * rb.linearVelocity.y * 2;
 
 
         StartCoroutine(ReactivarColision());

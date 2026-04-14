@@ -1,14 +1,16 @@
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private Vector3 Vector_Movimiento;
     private Rigidbody rb;
     
-    [SerializeField]private float Speed;
-    
-    [SerializeField]private float Salto;
+    [SerializeField] public float Speed;   
+    [SerializeField] private float Salto;
+    [SerializeField] private float gravedad = -9.81f;
+    public float verticalVelocity;
+    public Vector3 momentumPortal;
 
     private GroundChecker _GroundChecker;
     public PortalChecker PortalChecker;
@@ -23,8 +25,7 @@ public class Movement : MonoBehaviour
     
     void Update()
     {
-        Vector_Movimiento = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        if (Input.GetKeyDown(KeyCode.Space) && _GroundChecker.Tocando)
+        if (Input.GetKeyDown(KeyCode.Space) && _GroundChecker.Tocando && Mathf.Abs(rb.linearVelocity.y) <= 0)
         {
             salto();
         }
@@ -32,6 +33,7 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         mover();
         AplicarGravedad();
 
@@ -39,34 +41,29 @@ public class Movement : MonoBehaviour
 
     private void salto()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _GroundChecker.Tocando)
-        {
-            rb.AddForce(Vector3.up * Salto, ForceMode.Impulse);
-        }
+        Debug.Log("Saltando");
+        rb.AddForce(transform.up * Salto);
     }
 
     private void mover()
     {
-        Vector3 MoverVector = transform.TransformDirection(Vector_Movimiento) * Speed;
-        rb.linearVelocity = new Vector3(MoverVector.x, rb.linearVelocity.y, MoverVector.z);
+        // 2. Input WASD
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+        Vector3 direccionTarget = (transform.forward * v + transform.right * h).normalized * Speed;
 
-        if (_GroundChecker.Tocando && !PortalChecker.EnZonaDePortal)
-        {
+        Vector3 MovimientoTotal = transform.position;
+        MovimientoTotal += direccionTarget * Speed * Time.deltaTime;
 
-        }
-        else
-        {
+        rb.MovePosition(MovimientoTotal);
 
-        }
-
-
+        
     }
 
     private void AplicarGravedad()
     {
-
+            rb.AddForce(-transform.up * -9.8f * gravedad);
     }
-
     public void AplicarVelocidad(Vector3 Velocidad)
     {
 
