@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class TPable : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Rigidbody rb;
     public bool Cruzando = false;
+
+    public int portalesTocando = 0;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -18,13 +21,36 @@ public class TPable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(portalesTocando <= 0 && !Cruzando)
+        {
+            RestablecerColiciones();
+            portalesTocando = 0;
+        }
+    }
+
+    public void RegistrarEntrada()
+    {
+        portalesTocando++;
+        //Physics.IgnoreLayerCollision(7, 8, true);
+    }
+
+    // Llamar a esto desde el Portal en OnTriggerExit
+    public void RegistrarSalida()
+    {
+        portalesTocando--;
+        if (portalesTocando < 0)
+        { portalesTocando = 0; }
+    }
+
+    private void RestablecerColiciones()
+    {
+        Physics.IgnoreLayerCollision(7,8, false);
     }
 
     public void Teletransportar(Transform entrada, Transform salida)
     {
         Debug.Log("cruzando");
-        Cruzando = true;
+        //Cruzando = true;
 
         Vector3 posRelativa = entrada.InverseTransformPoint(transform.position);
         Vector3 posInvertida = Quaternion.Euler(0, 180, 0) * posRelativa;
@@ -37,17 +63,28 @@ public class TPable : MonoBehaviour
         rb.linearVelocity = salida.TransformDirection(Quaternion.Euler(0, 180, 0) * speedLocal);
 
         StartCoroutine(ReactivarColision(entrada, salida));
+
+        /*Vector3 posSalida = salida.InverseTransformPoint(transform.position);
+
+        
+        if (posSalida.z > 0.0005f) 
+        {
+            Physics.IgnoreLayerCollision(7, 8, false);
+        }*/
     }
 
     private IEnumerator ReactivarColision(Transform entrada, Transform salida)
     {
         // Esperamos a que el objeto esté completamente "fuera" del plano
         yield return new WaitUntil(() => {
+            Cruzando = true;
             Vector3 posRelativa = salida.InverseTransformPoint(transform.position);
-            return posRelativa.z > 0.005f; //
+            
+            return posRelativa.z > 0.00005f; //
         });
-        Physics.IgnoreLayerCollision(7, 8, false);
         Cruzando = false;
+        Physics.IgnoreLayerCollision(7, 8, false);
+
     }
 
 }
