@@ -663,6 +663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::arma
   proyectil: {fileID: -2978589048403427450, guid: 73c2322a492d6e841bde5ebb47c65d13, type: 3}
   canyon: {fileID: 1481998349}
+  Balas: {fileID: 0}
   cadencia: 1
 --- !u!136 &1323606663
 CapsuleCollider:
