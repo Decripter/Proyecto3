@@ -117,17 +117,18 @@ public class Camara_Portal : MonoBehaviour
         Vector3 portal_Jugador = CamaraJugador.transform.position - transform.position;
         float puntoPos2 = Vector3.Dot(transform.forward, portal_Jugador);
 
+        /*
         if (puntoPos < 0f && Player_Cerca)
         {
                 float puntoAngulo = Vector3.Dot(transform.forward, CamaraJugador.transform.forward);
                 Physics.IgnoreLayerCollision(3, 8, true);
                 Tp();
-            /*if(puntoAngulo < 0f)
-            {
+            /*if(puntoAngulo < 0f){};
             
-            }*/
+            
+            
 
-        }
+        }*/
     }
 
     void Tp()

@@ -33,7 +33,7 @@ public class mirada : MonoBehaviour
         Ocupado = false;
     }
 
-    
+
     void Update()
     {
         float x = Input.GetAxis("Mouse X") * speed * Time.deltaTime;
@@ -42,7 +42,7 @@ public class mirada : MonoBehaviour
         girox -= y;
         girox = Mathf.Clamp(girox, -90f, 90f);
 
-        transform.localRotation = Quaternion.Euler(girox, 0 ,0);
+        transform.localRotation = Quaternion.Euler(girox, 0, 0);
         Robert.transform.Rotate(Vector3.up * x);
 
 
@@ -50,23 +50,23 @@ public class mirada : MonoBehaviour
 
         RaycastHit hit;
 
-        if(Physics.Raycast(transform.position, transform.forward, out hit, rayDistance, Objeto) && Input.GetKeyDown(KeyCode.E) )
+        if (Physics.Raycast(transform.position, transform.forward, out hit, rayDistance, Objeto) && Input.GetKeyDown(KeyCode.E))
         {
-            if(!Ocupado)
+            if (!Ocupado)
             {
-            Debug.Log(hit.transform.name);
-            rbExt = hit.transform.GetComponent<Rigidbody>();
-            fj.connectedBody = rbExt;
-            Ocupado = true;
+                Debug.Log(hit.transform.name);
+                rbExt = hit.transform.GetComponent<Rigidbody>();
+                fj.connectedBody = rbExt;
+                Ocupado = true;
             }
 
             else
             {
-            Debug.Log("soltando");
-            fj.connectedBody = null; //Lo desenganchamos, pero luego hay que resetear las fisicas del objeto
-            rbExt.linearVelocity = Vector3.zero;
-            rbExt.angularVelocity = Vector3.zero;
-            Ocupado = false;
+                Debug.Log("soltando");
+                fj.connectedBody = null; //Lo desenganchamos, pero luego hay que resetear las fisicas del objeto
+                rbExt.linearVelocity = Vector3.zero;
+                rbExt.angularVelocity = Vector3.zero;
+                Ocupado = false;
             }
 
         }
@@ -94,7 +94,7 @@ public class mirada : MonoBehaviour
         {
             //Vector3 Separar = new Vector3(SepararX, 0f, 0f);
 
-            PortalA.transform.position = hitPared.point + (hitPared.normal*SepararX);
+            PortalA.transform.position = hitPared.point + (hitPared.normal * SepararX);
             //PortalA.transform.rotation = Quaternion.FromToRotation(PortalA.transform.forward, hitPared.normal) * PortalA.transform.rotation;
             PortalA.transform.rotation = Quaternion.LookRotation(hitPared.normal);
             Debug.Log("Portal");
@@ -106,7 +106,7 @@ public class mirada : MonoBehaviour
         {
             //Vector3 Separar = new Vector3(SepararX, 0f, 0f);
 
-            PortalB.transform.position = hitPared2.point + (hitPared2.normal*SepararX);
+            PortalB.transform.position = hitPared2.point + (hitPared2.normal * SepararX);
             //PortalB.transform.rotation = Quaternion.FromToRotation(PortalB.transform.forward, hitPared2.normal) * PortalB.transform.rotation;
             PortalB.transform.rotation = Quaternion.LookRotation(hitPared2.normal);
             Debug.Log("Portal");
