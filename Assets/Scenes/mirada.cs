@@ -25,6 +25,7 @@ public class mirada : MonoBehaviour
     public LayerMask MuroPortal;
 
     public float SepararX;
+    public Animator Mira;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -50,6 +51,19 @@ public class mirada : MonoBehaviour
 
         RaycastHit hit;
 
+        bool detectar = false;
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit, rayDistance, Objeto))
+        {
+            // ¿Tiene Rigidbody O tiene el script de Gravedad?
+
+            if (hit.transform.GetComponent<Rigidbody>() != null || hit.transform.GetComponent<CambioGravedad>() != null)
+            {
+                detectar = true;
+            }
+
+        }
+            Mira.SetBool("Est", detectar);
         if (Physics.Raycast(transform.position, transform.forward, out hit, rayDistance, Objeto) && Input.GetKeyDown(KeyCode.E))
         {
             if (!Ocupado)
