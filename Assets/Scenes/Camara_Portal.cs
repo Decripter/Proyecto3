@@ -25,6 +25,8 @@ public class Camara_Portal : MonoBehaviour
     public bool Player_Cerca;
     public float umbral = 0.31f;
     public bool esPlayer = false;
+    public Collider ParedAtras;
+    public Collider ParedBtras;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -36,7 +38,17 @@ public class Camara_Portal : MonoBehaviour
             if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1f))
             {
                 // LE DECIMOS A UNITY: "Este objeto específico ignora esta pared específica"
-                Physics.IgnoreCollision(other, hit.collider, true);
+                ParedAtras = hit.collider;
+                Physics.IgnoreCollision(other, ParedAtras, true);
+                //Physics.IgnoreLayerCollision(7,8,true);
+            }
+
+            if (Physics.Raycast(OtroPortal.position, -transform.forward, out RaycastHit hit2, 1f))
+            {
+                // LE DECIMOS A UNITY: "Este objeto específico ignora esta pared específica"
+                ParedBtras = hit2.collider;
+                Physics.IgnoreCollision(other, ParedBtras, true);
+                //Physics.IgnoreLayerCollision(7,8,true);
             }
         }
         else 
@@ -48,6 +60,21 @@ public class Camara_Portal : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1f))
+        {
+            // LE DECIMOS A UNITY: "Este objeto específico ignora esta pared específica"
+            ParedAtras = hit.collider;
+            Physics.IgnoreCollision(other, ParedAtras, false);
+            //Physics.IgnoreLayerCollision(7,8,true);
+        }
+
+        if (Physics.Raycast(OtroPortal.position, -transform.forward, out RaycastHit hit2, 1f))
+        {
+            // LE DECIMOS A UNITY: "Este objeto específico ignora esta pared específica"
+            ParedBtras = hit2.collider;
+            Physics.IgnoreCollision(other, ParedBtras, false);
+            //Physics.IgnoreLayerCollision(7,8,true);
+        }
         Player_Cerca = false;
     }
 
@@ -63,7 +90,7 @@ public class Camara_Portal : MonoBehaviour
 
             if (posRelativa.z < 0) // Cruzó al lado negativo
             {
-                obj.Teletransportar(transform, OtroPortal);
+                obj.Teletransportar(transform, OtroPortal, ParedAtras, ParedBtras);
             }
         }
         else
