@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
-
+using System.Collections;
 public class mirada : MonoBehaviour
 {
     public GameObject Robert;
@@ -37,8 +37,8 @@ public class mirada : MonoBehaviour
 
     void Update()
     {
-        float x = Input.GetAxis("Mouse X") * speed * Time.deltaTime;
-        float y = Input.GetAxis("Mouse Y") * speed * Time.deltaTime;
+        float x = Input.GetAxis("Mouse X") * speed;
+        float y = Input.GetAxis("Mouse Y") * speed;
 
         girox -= y;
         girox = Mathf.Clamp(girox, -90f, 90f);
@@ -100,6 +100,8 @@ public class mirada : MonoBehaviour
             {
                 Gravedad.Alterar(-9.8f);
             }
+
+            Gravedad.StartCoroutine(Gravedad.EfectoInversion());
         }
 
 
@@ -128,6 +130,5 @@ public class mirada : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward * DistanciaPortal, Color.blue);
 
     }
-
 
 }
