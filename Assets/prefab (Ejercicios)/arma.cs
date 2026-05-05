@@ -5,8 +5,10 @@ public class arma : MonoBehaviour
 {
 
     public bala proyectil;
+    public balaGravedad proyectilGravedad;
     public Transform canyon;
     public GameObject Balas;
+    public GameObject BalasGravedad;
     float ultimotiro;
     public float cadencia;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,11 +35,22 @@ public class arma : MonoBehaviour
         {
             intento();
         }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            spawnbala2();
+        }
     }
 
     private void spawnbala()
     {
         bala proyectilx = Instantiate(proyectil, canyon.position, canyon.rotation);
+        proyectilx.transform.SetParent(Balas.transform);
+    }
+
+    private void spawnbala2()
+    {
+        balaGravedad proyectilx = Instantiate(proyectilGravedad, canyon.position, canyon.rotation);
         proyectilx.transform.SetParent(Balas.transform);
     }
 }
