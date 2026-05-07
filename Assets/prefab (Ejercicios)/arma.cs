@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class arma : MonoBehaviour
 {
-
     public bala proyectil;
     public balaGravedad proyectilGravedad;
     public Transform canyon;
@@ -11,10 +10,14 @@ public class arma : MonoBehaviour
     public GameObject BalasGravedad;
     float ultimotiro;
     public float cadencia;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [Header("Sonidos de FMOD")]
+    // Aquí asignaremos el evento PistolaLaser V2 en el Inspector
+    public FMODUnity.EventReference sonidoPistolaLaser;
+
     void Start()
     {
-        
+
     }
 
     private void intento()
@@ -24,14 +27,11 @@ public class arma : MonoBehaviour
             ultimotiro = Time.time;
             spawnbala();
         }
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             intento();
         }
@@ -46,11 +46,18 @@ public class arma : MonoBehaviour
     {
         bala proyectilx = Instantiate(proyectil, canyon.position, canyon.rotation);
         proyectilx.transform.SetParent(Balas.transform);
+
+        // Reproduce PistolaLaser V2 en la posición del arma
+        FMODUnity.RuntimeManager.PlayOneShot(sonidoPistolaLaser, transform.position);
     }
 
     private void spawnbala2()
     {
         balaGravedad proyectilx = Instantiate(proyectilGravedad, canyon.position, canyon.rotation);
-        proyectilx.transform.SetParent(Balas.transform);
+        // Tip: He cambiado Balas por BalasGravedad aquí para que coincida con tu variable
+        proyectilx.transform.SetParent(BalasGravedad.transform);
+
+        // Si quieres que la bala de gravedad suene igual, usamos la misma variable
+        FMODUnity.RuntimeManager.PlayOneShot(sonidoPistolaLaser, transform.position);
     }
 }
