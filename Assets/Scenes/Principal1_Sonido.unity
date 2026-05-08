@@ -11117,6 +11117,7 @@ GameObject:
   - component: {fileID: 503914559}
   - component: {fileID: 503914560}
   - component: {fileID: 503914563}
+  - component: {fileID: 503914565}
   m_Layer: 3
   m_Name: Robert
   m_TagString: Untagged
@@ -11299,6 +11300,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &503914565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503914553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be60e79f1242393498087b37367460e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Pasos
+  sonidoPasos:
+    Guid:
+      Data1: 85654872
+      Data2: 1293714896
+      Data3: -520877168
+      Data4: 1299440072
+    Path: event:/pasos
+  tiempoEntrePasos: 0.5
 --- !u!1001 &505222576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23331,6 +23352,27 @@ MonoBehaviour:
     m_Bits: 1280
   SepararX: 0.1
   Mira: {fileID: 783358471}
+  sonidoPortalAzul:
+    Guid:
+      Data1: -827897776
+      Data2: 1230064295
+      Data3: -408596044
+      Data4: -1058138513
+    Path: event:/pistolaLaserV3 (1)
+  sonidoPortalNaranja:
+    Guid:
+      Data1: -558232917
+      Data2: 1124889433
+      Data3: -620654423
+      Data4: -1459732433
+    Path: event:/pistolaLaser V2
+  sonidoAgarre:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!54 &1093167552
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28762,11 +28804,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -558232917
-      Data2: 1124889433
-      Data3: -620654423
-      Data4: -1459732433
-    Path: event:/PistolaLaser V2
+      Data1: -827897776
+      Data2: 1230064295
+      Data3: -408596044
+      Data4: -1058138513
+    Path: event:/pistolaLaserV3 (1)
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -41180,6 +41222,26 @@ PrefabInstance:
       propertyPath: Balas
       value: 
       objectReference: {fileID: 1780311991}
+    - target: {fileID: 1881939561938044885, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
+      propertyPath: sonidoPistolaLaser.Path
+      value: event:/pistolaLaser (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881939561938044885, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
+      propertyPath: sonidoPistolaLaser.Guid.Data1
+      value: 540252604
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881939561938044885, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
+      propertyPath: sonidoPistolaLaser.Guid.Data2
+      value: 1153315796
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881939561938044885, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
+      propertyPath: sonidoPistolaLaser.Guid.Data3
+      value: 1344349607
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881939561938044885, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
+      propertyPath: sonidoPistolaLaser.Guid.Data4
+      value: -706374999
+      objectReference: {fileID: 0}
     - target: {fileID: 2811060035336096772, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
       propertyPath: m_Name
       value: arma

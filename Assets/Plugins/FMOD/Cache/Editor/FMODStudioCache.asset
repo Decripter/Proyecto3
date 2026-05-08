@@ -15,11 +15,92 @@ MonoBehaviour:
   Path: ../../Desktop/Momentum_Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639136102072686265
+  lastModified: 639138676269641314
   FileSizes:
   - Name: Desktop
-    Value: 776
+    Value: 918
   Exists: 1
+--- !u!114 &-911629250549788892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/pasos
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/pasos
+  Guid:
+    Data1: 85654872
+    Data2: 1293714896
+    Data3: -520877168
+    Data4: 1299440072
+  Banks:
+  - {fileID: 2980603792802515361}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-130786546168235411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/pistolaLaserV3 (1)
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/pistolaLaserV3 (1)
+  Guid:
+    Data1: -827897776
+    Data2: 1230064295
+    Data3: -408596044
+    Data4: -1058138513
+  Banks:
+  - {fileID: 2980603792802515361}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-65743150220509857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/pistolaLaser (1)
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/pistolaLaser (1)
+  Guid:
+    Data1: 540252604
+    Data2: 1153315796
+    Data3: 1344349607
+    Data4: -706374999
+  Banks:
+  - {fileID: 2980603792802515361}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37,16 +118,25 @@ MonoBehaviour:
   - {fileID: 2980603792802515361}
   EditorEvents:
   - {fileID: 463203596964099304}
+  - {fileID: -130786546168235411}
+  - {fileID: -65743150220509857}
+  - {fileID: -911629250549788892}
   EditorParameters: []
   MasterBanks:
   - {fileID: 2980603792802515361}
   StringsBanks:
   - {fileID: -2798466482356894864}
   cacheVersion: 131859
-  cacheTime: 639136102072686265
+  cacheTime: 639138676269641314
   SerializableEventsDict:
-  - key: event:/PistolaLaser V2
+  - key: event:/pistolaLaser V2
     index: 0
+  - key: event:/pistolaLaserV3 (1)
+    index: 1
+  - key: event:/pistolaLaser (1)
+    index: 2
+  - key: event:/pasos
+    index: 3
 --- !u!114 &463203596964099304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,9 +147,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PistolaLaser V2
+  m_Name: event:/pistolaLaser V2
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/PistolaLaser V2
+  Path: event:/pistolaLaser V2
   Guid:
     Data1: -558232917
     Data2: 1124889433
@@ -89,8 +179,8 @@ MonoBehaviour:
   Path: ../../Desktop/Momentum_Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639136102072666324
+  lastModified: 639138676269627945
   FileSizes:
   - Name: Desktop
-    Value: 19520
+    Value: 156256
   Exists: 1
