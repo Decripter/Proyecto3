@@ -31,15 +31,11 @@ public class arma : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetMouseButtonDown(0))
         {
             intento();
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            spawnbala2();
-        }
     }
 
     private void spawnbala()
@@ -48,16 +44,6 @@ public class arma : MonoBehaviour
         proyectilx.transform.SetParent(Balas.transform);
 
         // Reproduce PistolaLaser V2 en la posición del arma
-        FMODUnity.RuntimeManager.PlayOneShot(sonidoPistolaLaser, transform.position);
-    }
-
-    private void spawnbala2()
-    {
-        balaGravedad proyectilx = Instantiate(proyectilGravedad, canyon.position, canyon.rotation);
-        // Tip: He cambiado Balas por BalasGravedad aquí para que coincida con tu variable
-        proyectilx.transform.SetParent(BalasGravedad.transform);
-
-        // Si quieres que la bala de gravedad suene igual, usamos la misma variable
         FMODUnity.RuntimeManager.PlayOneShot(sonidoPistolaLaser, transform.position);
     }
 }

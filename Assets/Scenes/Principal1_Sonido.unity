@@ -11319,7 +11319,6 @@ MonoBehaviour:
       Data3: -520877168
       Data4: 1299440072
     Path: event:/pasos
-  tiempoEntrePasos: 0.5
 --- !u!1001 &505222576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25137,7 +25136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1183783313
 MeshRenderer:
   m_ObjectHideFlags: 0

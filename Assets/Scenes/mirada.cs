@@ -9,29 +9,24 @@ public class mirada : MonoBehaviour
     public float speed = 100f;
     private float girox = 0f;
 
-    public GameObject PortalA;
-    public GameObject PortalB;
-
     private Rigidbody rb;
     private FixedJoint fj;
     private Rigidbody rbExt;
-
-    public float rayDistance;
-    public float DistanciaPortal;
 
     public bool Ocupado;
     private CambioGravedad Gravedad;
 
     public LayerMask Objeto;
     public LayerMask MuroPortal;
+    public float rayDistance;
 
-    public float SepararX;
     public Animator Mira;
 
     [Header("Sonidos de FMOD")]
-    public FMODUnity.EventReference sonidoPortalAzul;   // Clic Izquierdo
-    public FMODUnity.EventReference sonidoPortalNaranja; // Clic Derecho
     public FMODUnity.EventReference sonidoAgarre;        // Tecla E
+
+    public float DistanciaPortal;
+    public float SepararX;
 
     void Start()
     {
@@ -90,7 +85,7 @@ public class mirada : MonoBehaviour
         }
 
         // --- INVERTIR GRAVEDAD (TECLA Z) ---
-        if (Physics.Raycast(transform.position, transform.forward, out hit, rayDistance) && Input.GetKeyDown(KeyCode.Z))
+        /*if (Physics.Raycast(transform.position, transform.forward, out hit, rayDistance) && Input.GetKeyDown(KeyCode.Z))
         {
             Gravedad = hit.transform.GetComponent<CambioGravedad>();
             if (Gravedad != null)
@@ -106,32 +101,8 @@ public class mirada : MonoBehaviour
                 }
                 Gravedad.StartCoroutine(Gravedad.EfectoInversion());
             }
-        }
+        }*/
 
-        // --- PORTAL NARANJA (CLIC DERECHO) ---
-        RaycastHit hitPared;
-        if (Physics.Raycast(transform.position, transform.forward, out hitPared, DistanciaPortal, MuroPortal) && Input.GetMouseButtonDown(1))
-        {
-            PortalA.transform.position = hitPared.point + (hitPared.normal * SepararX);
-            PortalA.transform.rotation = Quaternion.LookRotation(hitPared.normal);
 
-            // REPRODUCIR SONIDO
-            FMODUnity.RuntimeManager.PlayOneShot(sonidoPortalNaranja, transform.position);
-            Debug.Log("Portal Naranja");
-        }
-
-        // --- PORTAL AZUL (CLIC IZQUIERDO) ---
-        RaycastHit hitPared2;
-        if (Physics.Raycast(transform.position, transform.forward, out hitPared2, DistanciaPortal, MuroPortal) && Input.GetMouseButtonDown(0))
-        {
-            PortalB.transform.position = hitPared2.point + (hitPared2.normal * SepararX);
-            PortalB.transform.rotation = Quaternion.LookRotation(hitPared2.normal);
-
-            // REPRODUCIR SONIDO
-            FMODUnity.RuntimeManager.PlayOneShot(sonidoPortalAzul, transform.position);
-            Debug.Log("Portal Azul");
-        }
-
-        Debug.DrawRay(transform.position, transform.forward * DistanciaPortal, Color.blue);
     }
 }

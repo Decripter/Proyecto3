@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{b53f5267-3f88-46e1-baaa-90941f9cf9bf}">
+		<property name="assetPath">
+			<value>pistolaLaser (1).mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.536</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{23ce65ac-ab87-43e7-ba4a-dd29eb7c3680}</destination>
+		</relationship>
+	</object>
+</objects>
