@@ -6766,6 +6766,7 @@ GameObject:
   - component: {fileID: 290995522}
   - component: {fileID: 290995523}
   - component: {fileID: 290995524}
+  - component: {fileID: 290995525}
   m_Layer: 0
   m_Name: ArmaGravedad
   m_TagString: Untagged
@@ -6808,11 +6809,11 @@ MonoBehaviour:
   cadencia: 1
   sonidoPistolaLaser:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -558232917
+      Data2: 1124889433
+      Data3: -620654423
+      Data4: -1459732433
+    Path: event:/PistolaLaser V2
 --- !u!114 &290995524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6838,6 +6839,37 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+--- !u!114 &290995525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290995521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -558232917
+      Data2: 1124889433
+      Data3: -620654423
+      Data4: -1459732433
+    Path: event:/PistolaLaser V2
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &291492714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11416,6 +11448,7 @@ GameObject:
   - component: {fileID: 503914559}
   - component: {fileID: 503914560}
   - component: {fileID: 503914563}
+  - component: {fileID: 503914565}
   m_Layer: 3
   m_Name: Robert
   m_TagString: Untagged
@@ -11598,6 +11631,37 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &503914565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503914553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 85654872
+      Data2: 1293714896
+      Data3: -520877168
+      Data4: 1299440072
+    Path: event:/Pasos
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &505222576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18005,6 +18069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 843568460}
   - component: {fileID: 843568461}
+  - component: {fileID: 843568462}
   m_Layer: 0
   m_Name: ArmaPortales
   m_TagString: Untagged
@@ -18052,18 +18117,49 @@ MonoBehaviour:
     m_Bits: 1280
   sonidoPortalAzul:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1401791163
+      Data2: 1336104894
+      Data3: -73024114
+      Data4: 38704440
+    Path: event:/Portal
   sonidoPortalNaranja:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1401791163
+      Data2: 1336104894
+      Data3: -73024114
+      Data4: 38704440
+    Path: event:/Portal
+--- !u!114 &843568462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843568459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1401791163
+      Data2: 1336104894
+      Data3: -73024114
+      Data4: 38704440
+    Path: event:/Portal
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &848492593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23545,6 +23641,7 @@ GameObject:
   - component: {fileID: 1093167550}
   - component: {fileID: 1093167552}
   - component: {fileID: 1093167553}
+  - component: {fileID: 1093167554}
   m_Layer: 3
   m_Name: Main_Camara
   m_TagString: Untagged
@@ -23743,6 +23840,20 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1093167554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093167546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1001 &1093319964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39077,6 +39188,7 @@ GameObject:
   - component: {fileID: 1861677159}
   - component: {fileID: 1861677160}
   - component: {fileID: 1861677161}
+  - component: {fileID: 1861677162}
   m_Layer: 0
   m_Name: ArmaNormal
   m_TagString: Untagged
@@ -39119,11 +39231,11 @@ MonoBehaviour:
   cadencia: 1
   sonidoPistolaLaser:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 540252604
+      Data2: 1153315796
+      Data3: 1344349607
+      Data4: -706374999
+    Path: event:/PistolaLaser (1)
 --- !u!114 &1861677161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39149,6 +39261,37 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+--- !u!114 &1861677162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861677158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 540252604
+      Data2: 1153315796
+      Data3: 1344349607
+      Data4: -706374999
+    Path: event:/PistolaLaser (1)
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1862483408
 PrefabInstance:
   m_ObjectHideFlags: 0
