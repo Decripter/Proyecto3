@@ -6765,7 +6765,6 @@ GameObject:
   m_Component:
   - component: {fileID: 290995522}
   - component: {fileID: 290995523}
-  - component: {fileID: 290995524}
   - component: {fileID: 290995525}
   m_Layer: 0
   m_Name: ArmaGravedad
@@ -6801,7 +6800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea917e6145a3f4740acaa97f93004d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArmaGravedad
-  proyectil: {fileID: -2978589048403427450, guid: 73c2322a492d6e841bde5ebb47c65d13, type: 3}
   proyectilGravedad: {fileID: -2814537919784553152, guid: 16e600ab8c2b51a469407ba6e0fd215b, type: 3}
   canyon: {fileID: 1330407901}
   Balas: {fileID: 1780311991}
@@ -6814,31 +6812,6 @@ MonoBehaviour:
       Data3: -620654423
       Data4: -1459732433
     Path: event:/PistolaLaser V2
---- !u!114 &290995524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290995521}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86f1aa941a9b17e459218069bfcdb522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::arma
-  proyectil: {fileID: -2978589048403427450, guid: 73c2322a492d6e841bde5ebb47c65d13, type: 3}
-  proyectilGravedad: {fileID: -2814537919784553152, guid: 16e600ab8c2b51a469407ba6e0fd215b, type: 3}
-  canyon: {fileID: 1330407901}
-  Balas: {fileID: 1780311991}
-  BalasGravedad: {fileID: 7260459426120399181, guid: 16e600ab8c2b51a469407ba6e0fd215b, type: 3}
-  cadencia: 1
-  sonidoPistolaLaser:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
 --- !u!114 &290995525
 MonoBehaviour:
   m_ObjectHideFlags: 0

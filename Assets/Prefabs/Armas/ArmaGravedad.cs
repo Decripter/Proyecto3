@@ -3,7 +3,6 @@ using UnityEngine;
 public class ArmaGravedad : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public bala proyectil;
     public balaGravedad proyectilGravedad;
     public Transform canyon;
     public GameObject Balas;
@@ -42,7 +41,7 @@ public class ArmaGravedad : MonoBehaviour
     {
         balaGravedad proyectilx = Instantiate(proyectilGravedad, canyon.position, canyon.rotation);
         // Tip: He cambiado Balas por BalasGravedad aquí para que coincida con tu variable
-        proyectilx.transform.SetParent(BalasGravedad.transform);
+        proyectilx.transform.SetParent(Balas.transform);
 
         // Si quieres que la bala de gravedad suene igual, usamos la misma variable
         FMODUnity.RuntimeManager.PlayOneShot(sonidoPistolaLaser, transform.position);
