@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="AudioFile" id="{72b9b2d3-7aa4-4535-ba39-6dd4400f0c08}">
-		<property name="assetPath" />
+	<object class="AudioFile" id="{cab92eb1-21e5-4fc7-8182-51953431f59b}">
+		<property name="assetPath">
+			<value>CajaDeMetal (1).mp3</value>
+		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
 		</property>
@@ -9,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>1.536</value>
+			<value>2.9279999999999999</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{23ce65ac-ab87-43e7-ba4a-dd29eb7c3680}</destination>
