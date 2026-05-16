@@ -24,6 +24,7 @@ public class mirada : MonoBehaviour
 
     [Header("Sonidos de FMOD")]
     public FMODUnity.EventReference sonidoAgarre;        // Tecla E
+    public FMODUnity.EventReference sonidoSoltar;
 
     public float DistanciaPortal;
     public float SepararX;
@@ -79,8 +80,12 @@ public class mirada : MonoBehaviour
                 rbExt.linearVelocity = Vector3.zero;
                 rbExt.angularVelocity = Vector3.zero;
                 Ocupado = false;
-                // Sonido al soltar (puedes usar el mismo o uno diferente)
-                FMODUnity.RuntimeManager.PlayOneShot(sonidoAgarre, transform.position);
+
+                // <-- NUEVO: Sonido al soltar (con filtro de seguridad)
+                if (!sonidoSoltar.IsNull)
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot(sonidoSoltar, transform.position);
+                }
             }
         }
 

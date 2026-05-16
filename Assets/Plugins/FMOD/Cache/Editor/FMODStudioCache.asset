@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7797623329589718787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Correcto! (1)
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Correcto! (1)
+  Guid:
+    Data1: -1888221056
+    Data2: 1074841744
+    Data3: 1233830287
+    Data4: 159190628
+  Banks:
+  - {fileID: -1217215068799767073}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2798466482356894864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20,6 +47,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 918
   Exists: 1
+--- !u!114 &-2167279848179780149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Portal (1)
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Portal (1)
+  Guid:
+    Data1: -1186922479
+    Data2: 1197324779
+    Data3: 2065089950
+    Data4: 1036374242
+  Banks:
+  - {fileID: -1217215068799767073}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1217215068799767073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,10 +89,10 @@ MonoBehaviour:
   Path: Momentum_Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639144622402918093
+  lastModified: 639145375641873345
   FileSizes:
   - Name: Desktop
-    Value: 186720
+    Value: 269696
   Exists: 1
 --- !u!114 &-1065895699731687877
 MonoBehaviour:
@@ -50,9 +104,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/pistolaLaser (1)
+  m_Name: event:/PistolaLaser (1)
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/pistolaLaser (1)
+  Path: event:/PistolaLaser (1)
   Guid:
     Data1: 540252604
     Data2: 1153315796
@@ -169,24 +223,36 @@ MonoBehaviour:
   - {fileID: 6542963416211551314}
   - {fileID: -1065895699731687877}
   - {fileID: 7474495699255751731}
+  - {fileID: 3859105509386970010}
+  - {fileID: -2167279848179780149}
+  - {fileID: -7797623329589718787}
+  - {fileID: 8636702496372910938}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1217215068799767073}
   StringsBanks:
   - {fileID: 3983891027762969466}
   cacheVersion: 131859
-  cacheTime: 639144622402928033
+  cacheTime: 639145375641883321
   SerializableEventsDict:
-  - key: event:/pistolaLaserV3 (1)
+  - key: event:/PistolaLaserV3 (1)
     index: 0
-  - key: event:/pasos
+  - key: event:/Pasos
     index: 1
-  - key: event:/pistolaLaser V2
+  - key: event:/PistolaLaser V2
     index: 2
-  - key: event:/pistolaLaser (1)
+  - key: event:/PistolaLaser (1)
     index: 3
   - key: event:/CajaDeMetal (1)
     index: 4
+  - key: event:/CajaDeMetal V2 (2)
+    index: 5
+  - key: event:/Portal (1)
+    index: 6
+  - key: event:/Correcto! (1)
+    index: 7
+  - key: event:/PuertaOpen
+    index: 8
 --- !u!114 &463203596964099304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,9 +290,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/pasos
+  m_Name: event:/Pasos
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/pasos
+  Path: event:/Pasos
   Guid:
     Data1: 85654872
     Data2: 1293714896
@@ -261,6 +327,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 156256
   Exists: 1
+--- !u!114 &3859105509386970010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CajaDeMetal V2 (2)
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/CajaDeMetal V2 (2)
+  Guid:
+    Data1: -441938429
+    Data2: 1192975747
+    Data3: 54797200
+    Data4: -2032373876
+  Banks:
+  - {fileID: -1217215068799767073}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &3983891027762969466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,10 +369,10 @@ MonoBehaviour:
   Path: Momentum_Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639144622402928033
+  lastModified: 639145375641883321
   FileSizes:
   - Name: Desktop
-    Value: 976
+    Value: 1160
   Exists: 1
 --- !u!114 &6542963416211551314
 MonoBehaviour:
@@ -291,9 +384,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/pistolaLaser V2
+  m_Name: event:/PistolaLaser V2
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/pistolaLaser V2
+  Path: event:/PistolaLaser V2
   Guid:
     Data1: -558232917
     Data2: 1124889433
@@ -318,9 +411,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/pistolaLaserV3 (1)
+  m_Name: event:/PistolaLaserV3 (1)
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/pistolaLaserV3 (1)
+  Path: event:/PistolaLaserV3 (1)
   Guid:
     Data1: -827897776
     Data2: 1230064295
@@ -353,6 +446,33 @@ MonoBehaviour:
     Data2: 1164496000
     Data3: -1687727170
     Data4: -1560249658
+  Banks:
+  - {fileID: -1217215068799767073}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8636702496372910938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PuertaOpen
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/PuertaOpen
+  Guid:
+    Data1: -1028208277
+    Data2: 1274875281
+    Data3: 472239805
+    Data4: -796519513
   Banks:
   - {fileID: -1217215068799767073}
   IsStream: 0

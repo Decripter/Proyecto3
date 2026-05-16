@@ -92,6 +92,8 @@ public class Movement : MonoBehaviour
     public PortalChecker PortalChecker;
 
     public float empuje;
+
+    //private FMODUnity.StudioEventEmitter pasosEmitter;
     void Start()
     {
         _Controller = GetComponent<CharacterController>();
@@ -160,6 +162,33 @@ public class Movement : MonoBehaviour
         fuerza.y += gravedad * Time.deltaTime;
         _Controller.Move(fuerza * Time.deltaTime);
     }
+
+    //// --- NUEVA FUNCIÓN PARA CONTROLAR EL AUDIO LARGO ---
+    //private void ControlarAudioPasos()
+    //{
+    //    if (pasosEmitter == null) return;
+
+    //    // Comprobamos si el jugador se está moviendo de verdad en los ejes X o Z
+    //    bool seEstaMoviendo = Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f || Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f;
+
+    //    // Queremos que suene si: Toca el suelo AND Se está moviendo AND No está en la zona del portal
+    //    if (_GroundChecker.Tocando && seEstaMoviendo && !PortalChecker.EnZonaDePortal)
+    //    {
+    //        // Si el audio no está reproduciéndose ya, lo encendemos
+    //        if (!pasosEmitter.IsPlaying())
+    //        {
+    //            pasosEmitter.Play();
+    //        }
+    //    }
+    //    else
+    //    {
+    //        // Si se para, salta o va por el aire, apagamos el audio largo
+    //        if (pasosEmitter.IsPlaying())
+    //        {
+    //            pasosEmitter.Stop();
+    //        }
+    //    }
+    //}
 
     public void AplicarVelocidad(Vector3 Velocidad)
     {

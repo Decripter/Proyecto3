@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{6415607b-f920-4066-b87e-5604267890eb}">
+		<property name="assetPath">
+			<value>PuertaOpen.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.4179591836734694</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{23ce65ac-ab87-43e7-ba4a-dd29eb7c3680}</destination>
+		</relationship>
+	</object>
+</objects>

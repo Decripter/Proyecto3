@@ -1150,6 +1150,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::activar_anim
   Puerta: {fileID: 1256935534}
   animator: {fileID: 1256935532}
+  sonidoAcierto:
+    Guid:
+      Data1: -1888221056
+      Data2: 1074841744
+      Data3: 1233830287
+      Data4: 159190628
+    Path: event:/Correcto! (1)
+  sonidoPuerta:
+    Guid:
+      Data1: -1028208277
+      Data2: 1274875281
+      Data3: 472239805
+      Data4: -796519513
+    Path: event:/PuertaOpen
 --- !u!65 &30270117
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11613,28 +11627,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 503914553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: be60e79f1242393498087b37367460e3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
-  CollisionTag: 
-  EventReference:
+  m_EditorClassIdentifier: Assembly-CSharp::Pasos
+  sonidoPasos:
     Guid:
       Data1: 85654872
       Data2: 1293714896
       Data3: -520877168
       Data4: 1299440072
-    Path: event:/Pasos
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+    Path: event:/pasos
 --- !u!1001 &505222576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16148,6 +16150,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::activar_anim
   Puerta: {fileID: 606300187}
   animator: {fileID: 606300185}
+  sonidoAcierto:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  sonidoPuerta:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!65 &749731261
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18090,18 +18106,18 @@ MonoBehaviour:
     m_Bits: 1280
   sonidoPortalAzul:
     Guid:
-      Data1: -1401791163
-      Data2: 1336104894
-      Data3: -73024114
-      Data4: 38704440
-    Path: event:/Portal
+      Data1: -1186922479
+      Data2: 1197324779
+      Data3: 2065089950
+      Data4: 1036374242
+    Path: event:/Portal (1)
   sonidoPortalNaranja:
     Guid:
-      Data1: -1401791163
-      Data2: 1336104894
-      Data3: -73024114
-      Data4: 38704440
-    Path: event:/Portal
+      Data1: -1186922479
+      Data2: 1197324779
+      Data3: 2065089950
+      Data4: 1036374242
+    Path: event:/Portal (1)
 --- !u!114 &843568462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18117,11 +18133,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1401791163
-      Data2: 1336104894
-      Data3: -73024114
-      Data4: 38704440
-    Path: event:/Portal
+      Data1: -827897776
+      Data2: 1230064295
+      Data3: -408596044
+      Data4: -1058138513
+    Path: event:/PistolaLaserV3 (1)
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -19363,6 +19379,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893965058}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &907939922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 907939923}
+  - component: {fileID: 907939924}
+  m_Layer: 0
+  m_Name: UI_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &907939923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907939922}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.83119, y: 0.37802, z: 18.53525}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &907939924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907939922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52be2d427fcf5a4f8c227d83476f9e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GestionUI_Armas
+  imagenMiraUI: {fileID: 783358469}
+  armaNormal:
+    nombreArma: ArmaNormal
+    objetoArmaEnMano: {fileID: 1861677158}
+    spriteMira: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    colorMira: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.4392157}
+  armaGravedad:
+    nombreArma: ArmaGravedad
+    objetoArmaEnMano: {fileID: 290995521}
+    spriteMira: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    colorMira: {r: 0.10791205, g: 0.40295562, b: 0.9150943, a: 0.4392157}
+  objetoArmaPortales: {fileID: 843568459}
+  portal1: {fileID: 29935568}
+  portal2: {fileID: 542151296}
+  miraNingunPortal: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  miraSoloPortalAzul: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  miraSoloPortalNaranja: {fileID: 21300000, guid: 793a1d6da00ae3843a4c2b80c4a71764, type: 3}
+  miraAmbosPortales: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1001 &910585149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23763,11 +23841,18 @@ MonoBehaviour:
   Mira: {fileID: 783358471}
   sonidoAgarre:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 2005612090
+      Data2: 1164496000
+      Data3: -1687727170
+      Data4: -1560249658
+    Path: event:/CajaDeMetal (1)
+  sonidoSoltar:
+    Guid:
+      Data1: -441938429
+      Data2: 1192975747
+      Data3: 54797200
+      Data4: -2032373876
+    Path: event:/CajaDeMetal V2 (2)
   DistanciaPortal: 50
   SepararX: 0.1
 --- !u!54 &1093167552
@@ -34904,6 +34989,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::activar_anim
   Puerta: {fileID: 679138362}
   animator: {fileID: 679138366}
+  sonidoAcierto:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  sonidoPuerta:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!65 &1608265522
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35826,6 +35925,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::activar_anim
   Puerta: {fileID: 938565030}
   animator: {fileID: 938565031}
+  sonidoAcierto:
+    Guid:
+      Data1: -1888221056
+      Data2: 1074841744
+      Data3: 1233830287
+      Data4: 159190628
+    Path: event:/Correcto! (1)
+  sonidoPuerta:
+    Guid:
+      Data1: -1028208277
+      Data2: 1274875281
+      Data3: 472239805
+      Data4: -796519513
+    Path: event:/PuertaOpen
 --- !u!65 &1656576202
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39229,11 +39342,11 @@ MonoBehaviour:
   cadencia: 1
   sonidoPistolaLaser:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 540252604
+      Data2: 1153315796
+      Data3: 1344349607
+      Data4: -706374999
+    Path: event:/pistolaLaser (1)
 --- !u!114 &1861677162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41737,6 +41850,26 @@ PrefabInstance:
       propertyPath: proyectilGravedad
       value: 
       objectReference: {fileID: -2814537919784553152, guid: 16e600ab8c2b51a469407ba6e0fd215b, type: 3}
+    - target: {fileID: 1881939561938044885, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
+      propertyPath: sonidoPistolaLaser.Path
+      value: event:/pistolaLaserV3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881939561938044885, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
+      propertyPath: sonidoPistolaLaser.Guid.Data1
+      value: -827897776
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881939561938044885, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
+      propertyPath: sonidoPistolaLaser.Guid.Data2
+      value: 1230064295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881939561938044885, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
+      propertyPath: sonidoPistolaLaser.Guid.Data3
+      value: -408596044
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881939561938044885, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
+      propertyPath: sonidoPistolaLaser.Guid.Data4
+      value: -1058138513
+      objectReference: {fileID: 0}
     - target: {fileID: 2811060035336096772, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
       propertyPath: m_Name
       value: arma
@@ -44102,6 +44235,7 @@ SceneRoots:
   - {fileID: 686501574}
   - {fileID: 202046846}
   - {fileID: 1176229214}
+  - {fileID: 907939923}
   - {fileID: 1536591867}
   - {fileID: 831518956}
   - {fileID: 1183783315}
