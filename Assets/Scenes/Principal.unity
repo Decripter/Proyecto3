@@ -11410,15 +11410,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a3f8a88bef27b47b0a016aa572a8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Camara_Portal
-  Jugador: {fileID: 503914553}
-  CamaraJugador: {fileID: 1093167549}
-  OtraCamara: {fileID: 1547509561}
-  OtroPortal: {fileID: 874978677}
-  Player_Cerca: 0
-  umbral: 0.5
-  esPlayer: 0
-  ParedAtras: {fileID: 0}
-  ParedBtras: {fileID: 0}
+  imagenMiraUI: {fileID: 0}
+  armaNormal:
+    nombreArma: 
+    objetoArmaEnMano: {fileID: 0}
+    spriteMira: {fileID: 0}
+    colorMira: {r: 1, g: 1, b: 1, a: 1}
+  armaGravedad:
+    nombreArma: 
+    objetoArmaEnMano: {fileID: 0}
+    spriteMira: {fileID: 0}
+    colorMira: {r: 1, g: 1, b: 1, a: 1}
+  objetoArmaPortales: {fileID: 0}
+  portal1: {fileID: 0}
+  portal2: {fileID: 0}
+  miraNingunPortal: {fileID: 0}
+  miraSoloPortalAzul: {fileID: 0}
+  miraSoloPortalNaranja: {fileID: 0}
+  miraAmbosPortales: {fileID: 0}
 --- !u!1 &503914553
 GameObject:
   m_ObjectHideFlags: 0
@@ -18577,15 +18586,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a3f8a88bef27b47b0a016aa572a8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Camara_Portal
-  Jugador: {fileID: 503914553}
-  CamaraJugador: {fileID: 1093167549}
-  OtraCamara: {fileID: 882069690}
-  OtroPortal: {fileID: 500854781}
-  Player_Cerca: 0
-  umbral: 0.5
-  esPlayer: 0
-  ParedAtras: {fileID: 0}
-  ParedBtras: {fileID: 0}
+  imagenMiraUI: {fileID: 0}
+  armaNormal:
+    nombreArma: 
+    objetoArmaEnMano: {fileID: 0}
+    spriteMira: {fileID: 0}
+    colorMira: {r: 1, g: 1, b: 1, a: 1}
+  armaGravedad:
+    nombreArma: 
+    objetoArmaEnMano: {fileID: 0}
+    spriteMira: {fileID: 0}
+    colorMira: {r: 1, g: 1, b: 1, a: 1}
+  objetoArmaPortales: {fileID: 0}
+  portal1: {fileID: 0}
+  portal2: {fileID: 0}
+  miraNingunPortal: {fileID: 0}
+  miraSoloPortalAzul: {fileID: 0}
+  miraSoloPortalNaranja: {fileID: 0}
+  miraAmbosPortales: {fileID: 0}
 --- !u!1001 &876633002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19437,10 +19455,10 @@ MonoBehaviour:
   objetoArmaPortales: {fileID: 843568459}
   portal1: {fileID: 29935568}
   portal2: {fileID: 542151296}
-  miraNingunPortal: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  miraSoloPortalAzul: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  miraSoloPortalNaranja: {fileID: 21300000, guid: 793a1d6da00ae3843a4c2b80c4a71764, type: 3}
-  miraAmbosPortales: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  miraNingunPortal: {fileID: 21300000, guid: 9d088e3500e80764684521cbaf2683a7, type: 3}
+  miraSoloPortalAzul: {fileID: 21300000, guid: 605d151508347484bb93ebc95eaacef2, type: 3}
+  miraSoloPortalNaranja: {fileID: 21300000, guid: 9d088e3500e80764684521cbaf2683a7, type: 3}
+  miraAmbosPortales: {fileID: 21300000, guid: 9d088e3500e80764684521cbaf2683a7, type: 3}
 --- !u!1001 &910585149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22518,15 +22536,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a3f8a88bef27b47b0a016aa572a8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Camara_Portal
-  Jugador: {fileID: 503914553}
-  CamaraJugador: {fileID: 1093167549}
-  OtraCamara: {fileID: 303196882}
-  OtroPortal: {fileID: 1459982985}
-  Player_Cerca: 0
-  umbral: 0.5
-  esPlayer: 0
-  ParedAtras: {fileID: 0}
-  ParedBtras: {fileID: 0}
+  imagenMiraUI: {fileID: 0}
+  armaNormal:
+    nombreArma: 
+    objetoArmaEnMano: {fileID: 0}
+    spriteMira: {fileID: 0}
+    colorMira: {r: 1, g: 1, b: 1, a: 1}
+  armaGravedad:
+    nombreArma: 
+    objetoArmaEnMano: {fileID: 0}
+    spriteMira: {fileID: 0}
+    colorMira: {r: 1, g: 1, b: 1, a: 1}
+  objetoArmaPortales: {fileID: 0}
+  portal1: {fileID: 0}
+  portal2: {fileID: 0}
+  miraNingunPortal: {fileID: 0}
+  miraSoloPortalAzul: {fileID: 0}
+  miraSoloPortalNaranja: {fileID: 0}
+  miraAmbosPortales: {fileID: 0}
 --- !u!65 &1056902304
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31894,15 +31921,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a3f8a88bef27b47b0a016aa572a8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Camara_Portal
-  Jugador: {fileID: 503914553}
-  CamaraJugador: {fileID: 1093167549}
-  OtraCamara: {fileID: 1917651441}
-  OtroPortal: {fileID: 1056902302}
-  Player_Cerca: 0
-  umbral: 0.001
-  esPlayer: 0
-  ParedAtras: {fileID: 0}
-  ParedBtras: {fileID: 0}
+  imagenMiraUI: {fileID: 0}
+  armaNormal:
+    nombreArma: 
+    objetoArmaEnMano: {fileID: 0}
+    spriteMira: {fileID: 0}
+    colorMira: {r: 1, g: 1, b: 1, a: 1}
+  armaGravedad:
+    nombreArma: 
+    objetoArmaEnMano: {fileID: 0}
+    spriteMira: {fileID: 0}
+    colorMira: {r: 1, g: 1, b: 1, a: 1}
+  objetoArmaPortales: {fileID: 0}
+  portal1: {fileID: 0}
+  portal2: {fileID: 0}
+  miraNingunPortal: {fileID: 0}
+  miraSoloPortalAzul: {fileID: 0}
+  miraSoloPortalNaranja: {fileID: 0}
+  miraAmbosPortales: {fileID: 0}
 --- !u!65 &1459982987
 BoxCollider:
   m_ObjectHideFlags: 0

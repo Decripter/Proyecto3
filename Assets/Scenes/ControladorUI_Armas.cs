@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GestionUI_Armas : MonoBehaviour
+public class ControladorUI_Armas : MonoBehaviour
 {
     [System.Serializable]
     public class InterfazArma
@@ -20,17 +20,15 @@ public class GestionUI_Armas : MonoBehaviour
     public InterfazArma armaGravedad;
 
     [Header("Configuración Especial: Arma Portales")]
-    public GameObject objetoArmaPortales; // El objeto "ArmaPortales" de la jerarquía
-
-    [Tooltip("Arrastra aquí los objetos Portal1 y Portal2 de la jerarquía para saber si existen")]
+    public GameObject objetoArmaPortales;
     public GameObject portal1;
     public GameObject portal2;
 
     [Header("Las 4 Miras de los Portales")]
-    public Sprite miraNingunPortal;    // Estado 0: Ninguno en el mapa
-    public Sprite miraSoloPortalAzul;   // Estado 1: Solo el izquierdo/azul
-    public Sprite miraSoloPortalNaranja;// Estado 2: Solo el derecho/naranja
-    public Sprite miraAmbosPortales;    // Estado 3: Los dos puestos
+    public Sprite miraNingunPortal;
+    public Sprite miraSoloPortalAzul;
+    public Sprite miraSoloPortalNaranja;
+    public Sprite miraAmbosPortales;
 
     void Update()
     {
@@ -41,17 +39,15 @@ public class GestionUI_Armas : MonoBehaviour
     {
         if (imagenMiraUI == null) return;
 
-        // Aseguramos que el Alpha esté siempre a tope (255) para que no sea transparente
-        imagenMiraUI.color = new Color(imagenMiraUI.color.r, imagenMiraUI.color.g, imagenMiraUI.color.b, 1f);
-
         // 1. ¿LLEVAMOS EL ARMA DE PORTALES EN LA MANO?
         if (objetoArmaPortales != null && objetoArmaPortales.activeInHierarchy)
         {
-            // Comprobamos cuáles están activos físicamente en la escena
-            bool p1Activo = portal1 != null && portal1.activeInHierarchy;
-            bool p2Activo = portal2 != null && portal2.activeInHierarchy;
+            imagenMiraUI.color = Color.white;
 
-            // Cambiamos el sprite según la combinación de portales en el mapa
+            // Detección pasiva para el sistema de tu compañero
+            bool p1Activo = ComprobarSiPortalEstaPuesto(portal1);
+            bool p2Activo = ComprobarSiPortalEstaPuesto(portal2);
+
             if (!p1Activo && !p2Activo)
             {
                 imagenMiraUI.sprite = miraNingunPortal;
@@ -69,7 +65,7 @@ public class GestionUI_Armas : MonoBehaviour
                 imagenMiraUI.sprite = miraAmbosPortales;
             }
 
-            return; // Salimos, ya procesamos el arma de portales
+            return;
         }
 
         // 2. ¿LLEVAMOS EL ARMA NORMAL?
@@ -87,5 +83,25 @@ public class GestionUI_Armas : MonoBehaviour
             imagenMiraUI.color = armaGravedad.colorMira;
             return;
         }
+    }
+
+    bool ComprobarSiPortalEstaPuesto(GameObject objetoPortal)
+    {
+        if (objetoPortal == null) return false;
+        if (!objetoPortal.activeInHierarchy) return false;
+
+        MeshRenderer malla = objetoPortal.GetComponentInChildren<MeshRenderer>();
+        if (malla != null)
+        {
+            return malla.enabled;
+        }
+
+        Camera camaraPortal = objetoPortal.GetComponentInChildren<Camera>();
+        if (camaraPortal != null)
+        {
+            return camaraPortal.enabled;
+        }
+
+        return true;
     }
 }
