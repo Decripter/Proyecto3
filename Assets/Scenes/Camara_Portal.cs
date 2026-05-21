@@ -1,115 +1,261 @@
+ï»¿/*using System.Collections;
+using Unity.Mathematics;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.SocialPlatforms;*/
 
-public class GestionUI_Armas : MonoBehaviour
+using System.Collections;
+using Unity.Mathematics;
+using UnityEngine;
+// Estos son seguros para Build:
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
+
+//Physics.IgnoreCollision(other (el objeto), colliderDeLaPared, true); (usarlo con el raycast de la pared de atrï¿½s)
+public class Camara_Portal : MonoBehaviour
 {
-    [System.Serializable]
-    public class InterfazArma
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public GameObject Jugador;
+    public Camera CamaraJugador;
+    public Camera OtraCamara;
+    public Transform OtroPortal;
+
+    public bool Player_Cerca;
+    public float umbral = 0.31f;
+    public bool esPlayer = false;
+    public Collider ParedAtras;
+    public Collider ParedBtras;
+
+    private void OnTriggerEnter(Collider other)
     {
-        public string nombreArma;
-        public GameObject objetoArmaEnMano;
-        public Sprite spriteMira;
-        public Color colorMira = Color.white;
-    }
 
-    [Header("Configuración de la UI")]
-    public Image imagenMiraUI;
-
-    [Header("Lista de Armas Estándar")]
-    public InterfazArma armaNormal;
-    public InterfazArma armaGravedad;
-
-    [Header("Configuración Especial: Arma Portales")]
-    public GameObject objetoArmaPortales;
-    public GameObject portal1;
-    public GameObject portal2;
-
-    [Header("Las 4 Miras de los Portales")]
-    public Sprite miraNingunPortal;
-    public Sprite miraSoloPortalAzul;
-    public Sprite miraSoloPortalNaranja;
-    public Sprite miraAmbosPortales;
-
-    void Update()
-    {
-        ActualizarInterfazArmas();
-    }
-
-    void ActualizarInterfazArmas()
-    {
-        if (imagenMiraUI == null) return;
-
-        // 1. ¿LLEVAMOS EL ARMA DE PORTALES EN LA MANO?
-        if (objetoArmaPortales != null && objetoArmaPortales.activeInHierarchy)
+        if (other.TryGetComponent<TPable>(out TPable obj))
         {
-            // Forzamos color blanco para que no herede el color de las otras armas
-            imagenMiraUI.color = Color.white;
 
-            // DETECCIÓN INTELIGENTE: Miramos si el portal tiene su diseño visual activado en la pared
-            bool p1Activo = ComprobarSiPortalEstaPuesto(portal1);
-            bool p2Activo = ComprobarSiPortalEstaPuesto(portal2);
+            if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1f))
+            {
 
-            // Cambiamos el sprite según lo que detectemos visualmente
-            if (!p1Activo && !p2Activo)
-            {
-                imagenMiraUI.sprite = miraNingunPortal;
-            }
-            else if (p1Activo && !p2Activo)
-            {
-                imagenMiraUI.sprite = miraSoloPortalAzul;
-            }
-            else if (!p1Activo && p2Activo)
-            {
-                imagenMiraUI.sprite = miraSoloPortalNaranja;
-            }
-            else if (p1Activo && p2Activo)
-            {
-                imagenMiraUI.sprite = miraAmbosPortales;
+                ParedAtras = hit.collider;
+                Physics.IgnoreCollision(other, ParedAtras, true);
+                //Physics.IgnoreLayerCollision(7,8,true);
             }
 
-            return;
+            if (Physics.Raycast(OtroPortal.position, -transform.forward, out RaycastHit hit2, 1f))
+            {
+
+                ParedBtras = hit2.collider;
+                Physics.IgnoreCollision(other, ParedBtras, true);
+            }
         }
-
-        // 2. ¿LLEVAMOS EL ARMA NORMAL?
-        if (armaNormal.objetoArmaEnMano != null && armaNormal.objetoArmaEnMano.activeInHierarchy)
+        else
         {
-            if (armaNormal.spriteMira != null) imagenMiraUI.sprite = armaNormal.spriteMira;
-            imagenMiraUI.color = armaNormal.colorMira;
-            return;
-        }
-
-        // 3. ¿LLEVAMOS EL ARMA DE GRAVEDAD?
-        if (armaGravedad.objetoArmaEnMano != null && armaGravedad.objetoArmaEnMano.activeInHierarchy)
-        {
-            if (armaGravedad.spriteMira != null) imagenMiraUI.sprite = armaGravedad.spriteMira;
-            imagenMiraUI.color = armaGravedad.colorMira;
-            return;
+            esPlayer = true;
+            Player_Cerca = true;
         }
     }
 
-    // Función auxiliar que investiga el portal por dentro sin modificarlo
-    bool ComprobarSiPortalEstaPuesto(GameObject objetoPortal)
+    private void OnTriggerExit(Collider other)
     {
-        if (objetoPortal == null) return false;
-
-        // Si el objeto entero está apagado, obviamente no está puesto
-        if (!objetoPortal.activeInHierarchy) return false;
-
-        // Buscamos el componente visual (el clon de la cámara o el MeshRenderer que usa tu compañero)
-        // Normalmente si el portal no se ha disparado, sus componentes visuales internos están disabled.
-        MeshRenderer malla = objetoPortal.GetComponentInChildren<MeshRenderer>();
-        if (malla != null)
+        if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1f))
         {
-            return malla.enabled; // Nos dice true si la malla se está mostrando
+            ParedAtras = hit.collider;
+            Physics.IgnoreCollision(other, ParedAtras, false);
+            //Physics.IgnoreLayerCollision(7,8,true);
         }
 
-        // Si no usa malla y usa solo la cámara secundaria para renderizar el portal:
-        Camera camaraPortal = objetoPortal.GetComponentInChildren<Camera>();
-        if (camaraPortal != null)
+        if (Physics.Raycast(OtroPortal.position, -transform.forward, out RaycastHit hit2, 1f))
         {
-            return camaraPortal.enabled; // Nos dice true si la cámara del portal está transmitiendo
-        }
 
-        return true;
+            ParedBtras = hit2.collider;
+            Physics.IgnoreCollision(other, ParedBtras, false);
+
+        }
+        Player_Cerca = false;
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        var obj = other.GetComponent<TPable>();
+        if (obj != null)
+        {
+            Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1f);
+
+            // Calculamos si el centro del objeto cruzï¿½ el plano
+            Vector3 posRelativa = transform.InverseTransformPoint(other.transform.position);
+
+            if (posRelativa.z < 0) // Cruzï¿½ al lado negativo
+            {
+                obj.Teletransportar(transform, OtroPortal, ParedAtras, ParedBtras);
+            }
+        }
+        else
+        {
+        }
+    }
+
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void LateUpdate() //rotaciones, traslaciones de cï¿½maraB
+    {
+        //OtraCamara.transform.rotation = CamaraJugador.transform.rotation;
+
+        Quaternion rotacionRelativa = Quaternion.Inverse(transform.rotation) * CamaraJugador.transform.rotation;
+        Quaternion giro180 = Quaternion.Euler(0, 180, 0);
+
+        Vector3 posicionRelativa = transform.InverseTransformPoint(CamaraJugador.transform.position);
+        Vector3 posicionInvertida = giro180 * posicionRelativa;
+
+        OtraCamara.transform.position = OtroPortal.TransformPoint(posicionInvertida);
+        OtraCamara.transform.rotation = OtroPortal.rotation * giro180 * rotacionRelativa;
+
+        ActualizarPlanoDeCorte();
+    }
+
+    void ActualizarPlanoDeCorte() //Esto es full Gemini, es para hacer el tp, antes del clipping de cï¿½mara
+    {
+        // 1. Definir el plano en el mundo (Portal B)
+        // El "forward" del portal es la direcciï¿½n normal del plano
+        Vector3 normal = OtroPortal.forward;
+        float distancia = -Vector3.Dot(normal, OtroPortal.position);
+        Vector4 planoEnMundo = new Vector4(normal.x, normal.y, normal.z, distancia);
+
+        // 2. Convertir el plano al espacio de la cï¿½mara
+        Matrix4x4 matrix = OtraCamara.worldToCameraMatrix;
+        Vector4 planoEnCamara = matrix.inverse.transpose * planoEnMundo;
+
+        // 3. Aplicar la matriz oblicua a la cï¿½mara
+        OtraCamara.projectionMatrix = OtraCamara.CalculateObliqueMatrix(planoEnCamara);
+    }
+
+    private void Update()
+    {
+        Vector3 portal_Camara = CamaraJugador.transform.position - transform.position; //Direcciï¿½n
+
+        float puntoPos = Vector3.Dot(transform.forward, portal_Camara);
+
+        Vector3 portal_Jugador = CamaraJugador.transform.position - transform.position;
+        float puntoPos2 = Vector3.Dot(transform.forward, portal_Jugador);
+
+        /*
+        if (puntoPos < 0f && Player_Cerca)
+        {
+                float puntoAngulo = Vector3.Dot(transform.forward, CamaraJugador.transform.forward);
+                Physics.IgnoreLayerCollision(3, 8, true);
+                Tp();
+            /*if(puntoAngulo < 0f){};
+            
+            
+            
+
+        }*/
+    }
+
+    void Tp()
+    {
+        Movement Movement_Player = Jugador.GetComponent<Movement>();
+        Rigidbody rb = Jugador.GetComponent<Rigidbody>();
+
+        Vector3 posRelativa = transform.InverseTransformPoint(Jugador.transform.position);
+        Vector3 posInvertida = Quaternion.Euler(0, 180, 0) * posRelativa;
+        rb.position = OtroPortal.TransformPoint(posInvertida);
+
+        Quaternion rotRelativa = Quaternion.Inverse(transform.rotation) * Jugador.transform.rotation;
+        rb.rotation = OtroPortal.rotation * (Quaternion.Euler(0, 180, 0) * rotRelativa);
+
+        Vector3 Velocidad = transform.InverseTransformPoint(rb.linearVelocity);
+        rb.linearVelocity = -OtroPortal.transform.forward * rb.linearVelocity.y * 2;
+
+
+        StartCoroutine(ReactivarColision());
+        StartCoroutine(ReactivarColision2());
+    }
+    private IEnumerator ReactivarColision2()
+    {
+        yield return new WaitUntil(() => {
+            //Vector3 posRelativa = OtroPortal.InverseTransformPoint(Jugador.transform.position);
+            Vector3 posRelativa = OtroPortal.InverseTransformPoint(Jugador.transform.position);
+            return posRelativa.z > 0.005f; //
+        });
+        Physics.IgnoreLayerCollision(3, 8, false);
+        //8 Muro Portal
+    }
+    private IEnumerator ReactivarColision()
+    {
+        // Esperamos a que el jugador estï¿½ completamente "fuera" del plano
+        yield return new WaitUntil(() => {
+            //Vector3 posRelativa = OtroPortal.InverseTransformPoint(Jugador.transform.position);
+            Vector3 posRelativa = OtroPortal.InverseTransformPoint(CamaraJugador.transform.position);
+            return posRelativa.z > 0.00005f; //
+        });
+
+        //Ponhysics.IgnoreLayerCollisi(3, 9, false);
+        //9 Muro Portal, que encima, ni hace falta
+        Player_Cerca = false;
+
+        Rigidbody rb = Jugador.gameObject.GetComponent<Rigidbody>();
+
+        float duracion = 0.5f; // Medio segundo para enderezarse
+        float tiempoPasado = 0f;
+
+        Quaternion rotInicial = rb.rotation;
+
+        Vector3 eulerActual = rotInicial.eulerAngles;
+        Quaternion rotDestino = Quaternion.Euler(0, eulerActual.y, 0);
+
+        //rb.rotation = OtroPortal.rotation * (Quaternion.Euler(0, 180, 0) * rotRelativa);
+        if (Quaternion.Angle(rotInicial, rotDestino) > 0.1f && esPlayer)
+        {
+            while (tiempoPasado < duracion)
+            {
+                tiempoPasado += Time.deltaTime;
+                float t = tiempoPasado / duracion;
+
+                float tSuave = t * t * (3f - 2f * t);
+
+                // gira el ratï¿½n mientras se endereza (para no perder el control)
+                Vector3 eulerVivo = rb.rotation.eulerAngles;
+                Quaternion destinoVivo = Quaternion.Euler(0, eulerVivo.y, 0);
+
+                rb.rotation = Quaternion.Slerp(rb.rotation, destinoVivo, tSuave);
+
+                yield return null;
+            }
+            // Ajuste final perfecto
+            Vector3 finalY = rb.rotation.eulerAngles;
+            rb.rotation = Quaternion.Euler(0, finalY.y, 0);
+        }
+        esPlayer = false;
+    }
+
+
+    /*
+    private void OnDrawGizmos()
+    {
+        Gizmos.matrix = transform.localToWorldMatrix;
+
+        Vector3 posRelativa = transform.InverseTransformPoint(CamaraJugador.transform.position);
+
+        bool estaEnAreaXY = Mathf.Abs(posRelativa.x) < 0.02f && Mathf.Abs(posRelativa.y) < 0.02f;
+        // El TP ocurre cuando puntoPos < 0, o sea posRelativa.z < 0
+        bool estaEnProfundidad = posRelativa.z < 0.05f && posRelativa.z > -0.1f;
+
+        // CAMBIO DE COLOR: 
+        // - Rojo: Estï¿½s fuera.
+        // - Amarillo: Estï¿½s frente al portal (XY correcto) pero no has cruzado.
+        // - Azul: Tp Estï¿½s dentro y el cï¿½digo deberï¿½a dispararse.
+        if (estaEnAreaXY && estaEnProfundidad) Gizmos.color = Color.blue;
+        else if (estaEnAreaXY) Gizmos.color = Color.yellow;
+        else Gizmos.color = Color.red;
+
+        Vector3 centro = new Vector3(0, 0, -0.025f); // Centrado ligeramente hacia atrï¿½s
+        Vector3 tamano = new Vector3(0.02f * 2, 0.02f * 2, 0.15f);
+
+        Gizmos.DrawWireCube(centro, tamano); // WireCube para ver a travï¿½s de ï¿½l
+    }
+    */
 }

@@ -55,7 +55,7 @@ public class CambioGravedad : MonoBehaviour
 
         Material mat = rend.material; // Crea una instancia única para este objeto
         Color colorOriginal = mat.GetColor("_BaseColor"); // O "_Color" según tu shader
-        Color colorPulso = Color.cyan; // Color del pulso de gravedad
+        Color colorPulso = Color.purple; // Color del pulso de gravedad
 
         float duracion = 0.25f;
         float tiempo = 0f;
