@@ -1,5 +1,6 @@
 using UnityEngine;
-using System.Collections; // <--- ¡Asegúrate de tener esta línea añadida!
+using System.Collections;
+using UnityEngine.Playables;
 
 public class ControladorMenu : MonoBehaviour
 {
@@ -7,27 +8,36 @@ public class ControladorMenu : MonoBehaviour
     public GameObject canvasMenu;
 
     [Header("Configuracion de Teletransporte")]
-    public GameObject robert;          // El objeto de Robert entero
-    public Transform puntoInicio;      // El objeto 'PuntoInicioJuego' que creamos en el mapa
+    public GameObject robert;
+    public Transform puntoInicio;
+    public float alturaCamara = 0f;
 
     [Header("UI Cinematica Nueva")]
-    public GameObject fondoNegroCinematica; // El fondo negro que creamos
-    public GameObject textoNarrador;        // El texto de la primera frase
+    public GameObject fondoNegroCinematica;
+    public GameObject textoNarrador;
 
     [Header("Scripts a Desactivar de Robert")]
     public MonoBehaviour movimientoJugador;
-    public mirada scriptMirada;        // Enlazamos directamente tu script de mirada
+    public mirada scriptMirada;
     public MonoBehaviour armaJugador;
+
+    [Header("NUEVO: Control del Timeline")]
+    public PlayableDirector directorTimeline;
+    public GameObject camaraCinematica;
 
     void Start()
     {
-        canvasMenu.SetActive(true);
+        // 1. Aseguramos el menú activo
+        if (canvasMenu != null) canvasMenu.SetActive(true);
 
-        // Nos aseguramos de que la cinemática esté apagada al arrancar el juego
+        // 2. TRUCO ANTSECUESTRO: Apagamos el componente del director para que no evalúe el fotograma 0
+        if (directorTimeline != null) directorTimeline.enabled = false;
+        if (camaraCinematica != null) camaraCinematica.SetActive(false);
+
         if (fondoNegroCinematica != null) fondoNegroCinematica.SetActive(false);
         if (textoNarrador != null) textoNarrador.SetActive(false);
 
-        // Al empezar, apagamos por completo los sistemas de Robert
+        // 3. Apagamos los sistemas de Robert para que no se mueva en el menú
         if (movimientoJugador != null) movimientoJugador.enabled = false;
         if (scriptMirada != null) scriptMirada.enabled = false;
         if (armaJugador != null) armaJugador.enabled = false;
@@ -39,8 +49,7 @@ public class ControladorMenu : MonoBehaviour
 
     void Update()
     {
-        // Bloqueo de seguridad: Mientras el menú esté activo, el ratón se queda libre
-        if (canvasMenu.activeSelf)
+        if (canvasMenu != null && canvasMenu.activeSelf)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -52,23 +61,47 @@ public class ControladorMenu : MonoBehaviour
         StartCoroutine(SecuenciaCinematica());
     }
 
-    // Esta funcion controla el orden y el tiempo de la historia paso a paso
     IEnumerator SecuenciaCinematica()
     {
         // 1. Apagamos el menú de la televisión
-        canvasMenu.SetActive(false);
+        if (canvasMenu != null) canvasMenu.SetActive(false);
 
         // 2. Encendemos el fondo negro y la primera frase
         if (fondoNegroCinematica != null) fondoNegroCinematica.SetActive(true);
         if (textoNarrador != null) textoNarrador.SetActive(true);
 
-        // 3. ¡ESPERA EN NEGRO! El juego se para aquí durante 6 segundos
+        // 3. ESPERA EN NEGRO (6 segundos)
         yield return new WaitForSeconds(6.0f);
 
-        // 4. Termina la intro en negro: Apagamos el texto para pasar a la oficina
+        // 4. Termina la intro en negro
         if (textoNarrador != null) textoNarrador.SetActive(false);
+        if (fondoNegroCinematica != null) fondoNegroCinematica.SetActive(false);
 
-        // 5. Teletransportamos a Robert a su sitio (el código que ya tenías)
+        // ====================================================================
+        // REPRODUCIR LA CINEMÁTICA
+        // ====================================================================
+
+        // Activamos la cámara de la animación
+        if (camaraCinematica != null) camaraCinematica.SetActive(true);
+
+        if (directorTimeline != null)
+        {
+            directorTimeline.enabled = true; // <--- ¡NUEVO! Despertamos al director aquí
+            directorTimeline.Play();
+
+            // CAMBIO AQUÍ: En vez de WaitForSeconds, usamos este bucle inteligente
+            while (directorTimeline.state == UnityEngine.Playables.PlayState.Playing)
+            {
+                yield return null; // Espera al siguiente fotograma y vuelve a comprobar
+            }
+        }
+
+        // Al terminar la animación, apagamos la cámara cinemática
+        if (camaraCinematica != null) camaraCinematica.SetActive(false);
+
+        // ====================================================================
+
+        // 5. Teletransportamos a Robert a su sitio de inicio de JUEGO
         if (robert != null && puntoInicio != null)
         {
             CharacterController cc = robert.GetComponent<CharacterController>();
@@ -77,18 +110,22 @@ public class ControladorMenu : MonoBehaviour
             robert.transform.position = puntoInicio.position;
             robert.transform.rotation = puntoInicio.rotation;
 
+            // Como 'scriptMirada' está pegado a la Main_Camara, reseteamos su posición local
+            if (scriptMirada != null)
+            {
+                scriptMirada.transform.localPosition = new Vector3(0f, alturaCamara, 0f);
+                scriptMirada.transform.localRotation = Quaternion.identity;
+            }
+
             if (cc != null) cc.enabled = true;
         }
 
-        // 6. Quitamos el fondo negro para ver el mapa
-        if (fondoNegroCinematica != null) fondoNegroCinematica.SetActive(false);
-
-        // 7. Reactivamos los controles que tenías antes
+        // 6. Reactivamos los controles de Robert para que empiece a jugar
         if (movimientoJugador != null) movimientoJugador.enabled = true;
         if (scriptMirada != null) scriptMirada.enabled = true;
         if (armaJugador != null) armaJugador.enabled = true;
 
-        // 8. Escondemos el ratón
+        // 7. Escondemos el ratón
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
