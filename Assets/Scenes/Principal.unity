@@ -7167,8 +7167,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303196878}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.010624116, y: 0.99569625, z: -0.0032765206, w: -0.09200779}
-  m_LocalPosition: {x: 0.27338657, y: 0.00012468532, z: 0.1244071}
+  m_LocalRotation: {x: 0, y: -0.99982876, z: 0, w: 0.018509295}
+  m_LocalPosition: {x: 0.2122727, y: -0.004990908, z: 0.10167651}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16094,7 +16094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!320 &709376550
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -16124,13 +16124,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709376549}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.13553974, z: -0, w: 0.9907719}
   m_LocalPosition: {x: 50.68323, y: 0, z: 136.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 15.58, z: 0}
 --- !u!1001 &716329100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20216,7 +20216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &907939923
 Transform:
   m_ObjectHideFlags: 0
@@ -20248,8 +20248,8 @@ MonoBehaviour:
   armaNormal:
     nombreArma: ArmaNormal
     objetoArmaEnMano: {fileID: 1861677158}
-    spriteMira: {fileID: 21300000, guid: 423577ca9bad1bd4790524fb21d547f7, type: 3}
-    colorMira: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    spriteMira: {fileID: 21300000, guid: 834597ac69f18fb47bb994b835b50802, type: 3}
+    colorMira: {r: 0.6462264, g: 0.7779507, b: 1, a: 1}
   armaGravedad:
     nombreArma: ArmaGravedad
     objetoArmaEnMano: {fileID: 290995521}
@@ -20258,10 +20258,10 @@ MonoBehaviour:
   objetoArmaPortales: {fileID: 843568459}
   portal1: {fileID: 29935568}
   portal2: {fileID: 542151296}
-  miraNingunPortal: {fileID: 21300000, guid: 834597ac69f18fb47bb994b835b50802, type: 3}
-  miraSoloPortalAzul: {fileID: 21300000, guid: 834597ac69f18fb47bb994b835b50802, type: 3}
-  miraSoloPortalNaranja: {fileID: 21300000, guid: 834597ac69f18fb47bb994b835b50802, type: 3}
-  miraAmbosPortales: {fileID: 21300000, guid: 834597ac69f18fb47bb994b835b50802, type: 3}
+  miraNingunPortal: {fileID: 21300000, guid: 423577ca9bad1bd4790524fb21d547f7, type: 3}
+  miraSoloPortalAzul: {fileID: 21300000, guid: 423577ca9bad1bd4790524fb21d547f7, type: 3}
+  miraSoloPortalNaranja: {fileID: 21300000, guid: 423577ca9bad1bd4790524fb21d547f7, type: 3}
+  miraAmbosPortales: {fileID: 21300000, guid: 423577ca9bad1bd4790524fb21d547f7, type: 3}
 --- !u!95 &907939925
 Animator:
   serializedVersion: 7
@@ -24825,8 +24825,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093167546}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.050080992, y: 0.0046499236, z: 0.0024996893, w: 0.99873126}
-  m_LocalPosition: {x: -0.001, y: 0.528, z: 0.427}
+  m_LocalRotation: {x: -0, y: -0.06522682, z: -0, w: 0.9978705}
+  m_LocalPosition: {x: -39.8, y: -0.7, z: 53.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24837,7 +24837,7 @@ Transform:
   - {fileID: 1861677159}
   - {fileID: 843568460}
   m_Father: {fileID: 503914558}
-  m_LocalEulerAnglesHint: {x: -5.743, y: 360.52, z: 0.261}
+  m_LocalEulerAnglesHint: {x: 0, y: 352.52, z: 0}
 --- !u!114 &1093167548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30428,6 +30428,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5883794018057010693, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
   m_PrefabInstance: {fileID: 1993348992}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1339720274 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1881939561938044885, guid: 450001bc7e341f347965012dfbb1916a, type: 3}
+  m_PrefabInstance: {fileID: 1993348992}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f1aa941a9b17e459218069bfcdb522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::arma
 --- !u!1 &1348286326 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7980070849448679138, guid: 12c597fe238cb434c89b4a518a88ce91, type: 3}
@@ -31001,7 +31012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1372337590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31022,7 +31033,13 @@ MonoBehaviour:
   textoNarrador: {fileID: 0}
   movimientoJugador: {fileID: 503914559}
   scriptMirada: {fileID: 1093167550}
-  armaJugador: {fileID: 0}
+  armaJugador: {fileID: 1339720274}
+  objetoMira: {fileID: 831518952}
+  managerUI: {fileID: 907939922}
+  armaVisual: {fileID: 2059384575}
+  armaNormal: {fileID: 1861677158}
+  armaGravedad: {fileID: 290995521}
+  armaPortales: {fileID: 843568459}
   directorTimeline: {fileID: 709376550}
   camaraCinematica: {fileID: 396640486}
 --- !u!4 &1372337591

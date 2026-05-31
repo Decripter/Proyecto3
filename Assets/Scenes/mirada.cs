@@ -89,6 +89,8 @@ public class mirada : MonoBehaviour
             }
         }
 
+
+
         // --- INVERTIR GRAVEDAD (TECLA Z) ---
         /*if (Physics.Raycast(transform.position, transform.forward, out hit, rayDistance) && Input.GetKeyDown(KeyCode.Z))
         {
@@ -109,5 +111,22 @@ public class mirada : MonoBehaviour
         }*/
 
 
+
+
     }
+
+    public void ResetearMirada()
+    {
+        girox = 0f; // Ponemos a cero el acumulador vertical
+        transform.localRotation = Quaternion.identity; // Alineamos la cámara al frente
+
+        // Forzamos al Rigidbody de la cámara a detener toda rotación o velocidad acumulada
+        if (rb == null) rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+    }
+
 }
