@@ -20216,7 +20216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &907939923
 Transform:
   m_ObjectHideFlags: 0
@@ -20254,7 +20254,7 @@ MonoBehaviour:
     nombreArma: ArmaGravedad
     objetoArmaEnMano: {fileID: 290995521}
     spriteMira: {fileID: 21300000, guid: 697b552914745a7478641c311c3b05d1, type: 3}
-    colorMira: {r: 0.10791205, g: 0.40295562, b: 0.9150943, a: 1}
+    colorMira: {r: 0, g: 0.36585355, b: 1, a: 1}
   objetoArmaPortales: {fileID: 843568459}
   portal1: {fileID: 29935568}
   portal2: {fileID: 542151296}
@@ -24956,7 +24956,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 5376
   rayDistance: 2.5
-  Mira: {fileID: 907939925}
+  Mira: {fileID: 783358471}
   sonidoAgarre:
     Guid:
       Data1: 2005612090
@@ -34225,6 +34225,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 9be60d8a69081fd4f9d4695be1c374f4, type: 2}
   - {fileID: 2100000, guid: 847b41a80a48d414c86740c0e78860fc, type: 2}
   - {fileID: 2100000, guid: 1a6cfd0e1b85d91448cf84a04000f601, type: 2}
+  Centro: {fileID: 783358469}
+  Miras:
+  - {fileID: 21300000, guid: 697b552914745a7478641c311c3b05d1, type: 3}
+  - {fileID: 21300000, guid: 834597ac69f18fb47bb994b835b50802, type: 3}
+  - {fileID: 21300000, guid: 423577ca9bad1bd4790524fb21d547f7, type: 3}
   _RendererArma:
   - {fileID: 1519928902}
   - {fileID: 1519928901}

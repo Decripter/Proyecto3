@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gun_Manager : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class Gun_Manager : MonoBehaviour
     public Color[] Colores;
     public Material[] Pantalla;
     public Material[] Arma;
-
+    public Image Centro;
+    public Sprite[] Miras;
     [Header("Cositas Arma")]
     public Renderer[] _RendererArma;
     public Renderer _RendererPantalla;
@@ -76,7 +78,9 @@ public class Gun_Manager : MonoBehaviour
         for (int i = 0; i < Modos.Length; i++)
         {
             Modos[i].SetActive(i == indiceActual);
+            
         }
+        Centro.sprite = Miras[indiceActual];
         //_Renderer.material.color = Colores[indiceActual];
         _RendererPantalla.material = Pantalla[indiceActual];
 
