@@ -9,6 +9,7 @@ public class ArmaGravedad : MonoBehaviour
     public GameObject BalasGravedad;
     float ultimotiro;
     public float cadencia;
+    public Animator _animatorArma;
 
     [Header("Sonidos de FMOD")]
     // Aquí asignaremos el evento PistolaLaser V2 en el Inspector
@@ -39,6 +40,7 @@ public class ArmaGravedad : MonoBehaviour
 
     private void spawnbala()
     {
+        _animatorArma.SetTrigger("DisparoPesado");
         balaGravedad proyectilx = Instantiate(proyectilGravedad, canyon.position, canyon.rotation);
         // Tip: He cambiado Balas por BalasGravedad aquí para que coincida con tu variable
         proyectilx.transform.SetParent(Balas.transform);

@@ -13,6 +13,10 @@ public class Gun_Manager : MonoBehaviour
     public Renderer[] _RendererArma;
     public Renderer _RendererPantalla;
 
+    public Animator ArmaFull;
+    public Animator ArmaAcciones;
+    public CharacterController jugador;
+
     private int indiceActual = 0;
 
     void Start()
@@ -38,9 +42,33 @@ public class Gun_Manager : MonoBehaviour
             SeleccionarModo();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { indiceActual = 0; SeleccionarModo(); }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && Modos.Length > 1) { indiceActual = 1; SeleccionarModo(); }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && Modos.Length > 2) { indiceActual = 2; SeleccionarModo(); }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        {
+            indiceActual = 0; SeleccionarModo(); 
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && Modos.Length > 1)
+        { 
+            indiceActual = 1; SeleccionarModo(); 
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) && Modos.Length > 2) 
+        { indiceActual = 2; SeleccionarModo(); 
+        }
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            ArmaAcciones.SetTrigger("Inspeccionar");
+        }
+
+        /*Vector3 velocidadPlana = new Vector3(jugador.velocity.x, 0, jugador.velocity.z);
+        armaAnimator.SetFloat("Velocidad", velocidadPlana.magnitude);*/
+
+        float movimiento = Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical"));
+
+        // Limitamos el máximo a 1 para que el Animator no reciba números raros si pulsas dos teclas a la vez
+        float velocidadPlana = Mathf.Clamp01(movimiento);
+
+        ArmaFull.SetFloat("Velocidad", velocidadPlana);
+
     }
 
     void SeleccionarModo()
@@ -56,6 +84,13 @@ public class Gun_Manager : MonoBehaviour
         {
             rend.material = Arma[indiceActual];
         }
+        Debug.Log("Modo actual: " + Modos[indiceActual].name);
+
+        if (ArmaAcciones != null)
+        {
+            ArmaAcciones.SetTrigger("CambioModo");
+        }
+
         Debug.Log("Modo actual: " + Modos[indiceActual].name);
     }
 

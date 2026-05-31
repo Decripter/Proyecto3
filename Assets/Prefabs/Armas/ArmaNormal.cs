@@ -7,6 +7,7 @@ public class ArmaNormal : MonoBehaviour
     public Transform canyon;
     public GameObject Balas;
     public GameObject BalasGravedad;
+    public Animator _animatorArma;
     float ultimotiro;
     public float cadencia;
 
@@ -39,6 +40,7 @@ public class ArmaNormal : MonoBehaviour
 
     private void spawnbala()
     {
+        _animatorArma.SetTrigger("DisparoPesado");
         bala proyectilx = Instantiate(proyectil, canyon.position, canyon.rotation);
         proyectilx.transform.SetParent(Balas.transform);
 
