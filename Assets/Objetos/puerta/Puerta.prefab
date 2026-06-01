@@ -93,6 +93,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::activar_anim
   Puerta: {fileID: 0}
   animator: {fileID: 0}
+  sonidoAcierto:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  sonidoPuerta:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &5022779188530104796
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puerta
       objectReference: {fileID: 0}
+    - target: {fileID: 6043141380835423531, guid: 5077f504f2121bc449175247ba01f59d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a83c036255a0a15498ab7a48db7809fa, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
