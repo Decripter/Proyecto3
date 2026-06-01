@@ -27,6 +27,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-7776081286499377763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NarracionPruevae
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NarracionPruevae
+  Guid:
+    Data1: -1899169417
+    Data2: 1129591631
+    Data3: 1903906971
+    Data4: -2088850608
+  Banks:
+  - {fileID: -1217215068799767073}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 20318
 --- !u!114 &-2798466482356894864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,10 +116,10 @@ MonoBehaviour:
   Path: Momentum_Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639146539361651498
+  lastModified: 639159408469540032
   FileSizes:
   - Name: Desktop
-    Value: 269696
+    Value: 883680
   Exists: 1
 --- !u!114 &-1065895699731687877
 MonoBehaviour:
@@ -227,13 +254,15 @@ MonoBehaviour:
   - {fileID: -2167279848179780149}
   - {fileID: -7797623329589718787}
   - {fileID: 8636702496372910938}
+  - {fileID: -7776081286499377763}
+  - {fileID: 4662716513517398233}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1217215068799767073}
   StringsBanks:
   - {fileID: 3983891027762969466}
   cacheVersion: 131859
-  cacheTime: 639146539361701333
+  cacheTime: 639159408469559978
   SerializableEventsDict:
   - key: event:/PistolaLaserV3 (1)
     index: 0
@@ -253,6 +282,10 @@ MonoBehaviour:
     index: 7
   - key: event:/PuertaOpen
     index: 8
+  - key: event:/NarracionPruevae
+    index: 9
+  - key: event:/Narracion02
+    index: 10
 --- !u!114 &463203596964099304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,11 +402,38 @@ MonoBehaviour:
   Path: Momentum_Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639146539361701333
+  lastModified: 639159408469559978
   FileSizes:
   - Name: Desktop
-    Value: 1160
+    Value: 1252
   Exists: 1
+--- !u!114 &4662716513517398233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Narracion02
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Narracion02
+  Guid:
+    Data1: 1879622565
+    Data2: 1085601115
+    Data3: -1352917842
+    Data4: -1748702552
+  Banks:
+  - {fileID: -1217215068799767073}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 40931
 --- !u!114 &6542963416211551314
 MonoBehaviour:
   m_ObjectHideFlags: 0
