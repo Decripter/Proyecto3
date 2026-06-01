@@ -116,7 +116,7 @@ MonoBehaviour:
   Path: Momentum_Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639159411094054324
+  lastModified: 639159408469540032
   FileSizes:
   - Name: Desktop
     Value: 883680
@@ -262,7 +262,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 3983891027762969466}
   cacheVersion: 131859
-  cacheTime: 639159411094134057
+  cacheTime: 639159408469559978
   SerializableEventsDict:
   - key: event:/PistolaLaserV3 (1)
     index: 0
@@ -402,7 +402,7 @@ MonoBehaviour:
   Path: Momentum_Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639159411094134057
+  lastModified: 639159408469559978
   FileSizes:
   - Name: Desktop
     Value: 1252

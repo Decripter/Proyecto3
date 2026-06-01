@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using UnityEngine.Playables;
 
@@ -6,6 +6,7 @@ public class ControladorMenu : MonoBehaviour
 {
     [Header("UI General")]
     public GameObject canvasMenu;
+    public GameObject canvasCreditos; // â—„ NUEVO: Arrastra aquÃ­ el panel de crÃ©ditos
 
     [Header("Configuracion de Teletransporte")]
     public GameObject robert;
@@ -35,32 +36,31 @@ public class ControladorMenu : MonoBehaviour
     public GameObject camaraCinematica;
 
     [Header("NUEVO FMOD: Audio del Narrador")]
-    // Esto creará el buscador de eventos de FMOD en tu Inspector de Unity
     public FMODUnity.EventReference eventoNarrador;
     private FMOD.Studio.EventInstance narradorInstance;
 
-    // VARIABLES INTERNAS PARA EL CONTROL DEL SKIP
     private Coroutine secuenciaCoroutine;
     private bool enCinematica = false;
 
     void Start()
     {
-        // 1. Aseguramos el menú activo
+        // 1. Aseguramos el menÃº activo y los crÃ©ditos apagados al empezar
         if (canvasMenu != null) canvasMenu.SetActive(true);
+        if (canvasCreditos != null) canvasCreditos.SetActive(false); // â—„ NUEVO
 
-        // 2. Apagamos el director para que no evalúe el fotograma 0
+        // 2. Apagamos el director para que no evalÃºe el fotograma 0
         if (directorTimeline != null) directorTimeline.enabled = false;
         if (camaraCinematica != null) camaraCinematica.SetActive(false);
 
         if (fondoNegroCinematica != null) fondoNegroCinematica.SetActive(false);
         if (textoNarrador != null) textoNarrador.SetActive(false);
 
-        // 3. Apagamos los sistemas de Robert para que no se mueva en el menú
+        // 3. Apagamos los sistemas de Robert para que no se mueva en el menÃº
         if (movimientoJugador != null) movimientoJugador.enabled = false;
         if (scriptMirada != null) scriptMirada.enabled = false;
         if (armaJugador != null) armaJugador.enabled = false;
 
-        // 4. APAGAMOS TODO LO VISUAL Y LOGICO DEL JUEGO EN EL MENÚ
+        // 4. APAGAMOS TODO LO VISUAL Y LOGICO DEL JUEGO EN EL MENÃš
         if (objetoMira != null) objetoMira.SetActive(false);
         if (managerUI != null) managerUI.SetActive(false);
         if (armaVisual != null) armaVisual.SetActive(false);
@@ -69,7 +69,6 @@ public class ControladorMenu : MonoBehaviour
         if (armaGravedad != null) armaGravedad.SetActive(false);
         if (armaPortales != null) armaPortales.SetActive(false);
 
-        // Forzamos al ratón a estar libre para el menú
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -78,13 +77,14 @@ public class ControladorMenu : MonoBehaviour
 
     void Update()
     {
-        if (canvasMenu != null && canvasMenu.activeSelf)
+        // Modificado para que el ratÃ³n se quede libre si cualquiera de los dos menÃºs estÃ¡ abierto
+        bool menuAbierto = (canvasMenu != null && canvasMenu.activeSelf) || (canvasCreditos != null && canvasCreditos.activeSelf);
+        if (menuAbierto)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
 
-        // ¡NUEVO! Si estamos en mitad de la cinemática y se presiona la F, saltamos todo
         if (enCinematica && Input.GetKeyDown(KeyCode.F))
         {
             SaltarCinematica();
@@ -93,41 +93,46 @@ public class ControladorMenu : MonoBehaviour
 
     public void PulsarPlay()
     {
-        // Guardamos la referencia de la corrutina para poder detenerla si se skipea
         secuenciaCoroutine = StartCoroutine(SecuenciaCinematica());
     }
+
+    // ====================================================================
+    // NUEVOS MÃ‰TODOS PARA LOS CRÃ‰DITOS
+    // ====================================================================
+    public void PulsarCreditos() // â—„ NUEVO
+    {
+        if (canvasMenu != null) canvasMenu.SetActive(false);       // Apaga el menÃº principal
+        if (canvasCreditos != null) canvasCreditos.SetActive(true); // Enciende los crÃ©ditos
+    }
+
+    public void PulsarVolverCreditos() // â—„ NUEVO
+    {
+        if (canvasCreditos != null) canvasCreditos.SetActive(false); // Apaga los crÃ©ditos
+        if (canvasMenu != null) canvasMenu.SetActive(true);         // Vuelve a encender el menÃº principal
+    }
+    // ====================================================================
 
     IEnumerator SecuenciaCinematica()
     {
         enCinematica = true;
 
-        // ====================================================================
-        // FMOD: CREAR Y REPRODUCIR AUDIO DEL NARRADOR
-        // ====================================================================
         if (!eventoNarrador.IsNull)
         {
-            // Creamos la instancia del audio de FMOD y le damos al Play inmediatamente
             narradorInstance = FMODUnity.RuntimeManager.CreateInstance(eventoNarrador);
             narradorInstance.start();
         }
 
-        // 1. Apagamos el menú de la televisión
         if (canvasMenu != null) canvasMenu.SetActive(false);
+        if (canvasCreditos != null) canvasCreditos.SetActive(false); // Por seguridad, nos aseguramos de que estÃ©n apagados
 
-        // 2. Encendemos el fondo negro y la primera frase
         if (fondoNegroCinematica != null) fondoNegroCinematica.SetActive(true);
         if (textoNarrador != null) textoNarrador.SetActive(true);
 
-        // 3. ESPERA EN NEGRO (6 segundos)
         yield return new WaitForSeconds(6.0f);
 
-        // 4. Termina la intro en negro
         if (textoNarrador != null) textoNarrador.SetActive(false);
         if (fondoNegroCinematica != null) fondoNegroCinematica.SetActive(false);
 
-        // ====================================================================
-        // REPRODUCIR LA CINEMÁTICA
-        // ====================================================================
         if (camaraCinematica != null) camaraCinematica.SetActive(true);
 
         if (directorTimeline != null)
@@ -141,55 +146,36 @@ public class ControladorMenu : MonoBehaviour
             }
         }
 
-        // Si la cinemática termina de manera natural, iniciamos el juego normalmente
         FinalizarYActivarJuego();
     }
 
-    // ¡NUEVO MÉTODO! Se encarga de interrumpir todo de forma segura
     void SaltarCinematica()
     {
-        // 1. Detenemos la corrutina para que no siga esperando o ejecutando pasos de fondo
         if (secuenciaCoroutine != null)
         {
             StopCoroutine(secuenciaCoroutine);
         }
 
-        // 2. Detenemos el Timeline en seco si se estaba reproduciendo
         if (directorTimeline != null)
         {
             directorTimeline.Stop();
         }
 
-        // ====================================================================
-        // FMOD: DETENER EL AUDIO DEL NARRADOR AL HACER SKIP
-        // ====================================================================
-        // Usamos STOP_MODE.ALLOWFADEINOUT por si tu audio en FMOD tiene un leve Fade Out, 
-        // para que no pegue un chasquido feo al cortarse.
         narradorInstance.stop((FMOD.Studio.STOP_MODE)0);
-        narradorInstance.release(); // Limpiamos la memoria del evento de audio
+        narradorInstance.release();
 
-        // 3. Forzamos el encendido del juego de inmediato
         FinalizarYActivarJuego();
     }
 
-    // Aquí agrupamos toda la lógica de encendido del juego para no duplicar código
     void FinalizarYActivarJuego()
     {
         enCinematica = false;
-
-        // ====================================================================
-        // FMOD: ASEGURAR QUE SE LIMPIA EL AUDIO SI TERMINA NATURALMENTE
-        // ====================================================================
         narradorInstance.release();
 
-        // Nos aseguramos de apagar de golpe todas las cámaras y elementos visuales de la intro
         if (textoNarrador != null) textoNarrador.SetActive(false);
         if (fondoNegroCinematica != null) fondoNegroCinematica.SetActive(false);
         if (camaraCinematica != null) camaraCinematica.SetActive(false);
 
-        // ====================================================================
-        // 5. Teletransportamos a Robert al inicio del JUEGO
-        // ====================================================================
         if (robert != null && puntoInicio != null)
         {
             CharacterController cc = robert.GetComponent<CharacterController>();
@@ -207,26 +193,18 @@ public class ControladorMenu : MonoBehaviour
             if (cc != null) cc.enabled = true;
         }
 
-        // ====================================================================
-        // 6. ENCENDEMOS EL JUEGO
-        // ====================================================================
         if (movimientoJugador != null) movimientoJugador.enabled = true;
         if (scriptMirada != null) scriptMirada.enabled = true;
         if (armaJugador != null) armaJugador.enabled = true;
 
-        // Encendemos las interfaces y el modelo del arma
         if (objetoMira != null) objetoMira.SetActive(true);
         if (managerUI != null) managerUI.SetActive(true);
         if (armaVisual != null) armaVisual.SetActive(true);
 
-        // ACTIVAMOS SOLO EL ARMA NORMAL PARA EMPEZAR A JUGAR
         if (armaNormal != null) armaNormal.SetActive(true);
-
-        // Nos aseguramos de que las otras dos sigan apagadas
         if (armaGravedad != null) armaGravedad.SetActive(false);
         if (armaPortales != null) armaPortales.SetActive(false);
 
-        // 7. Escondemos el ratón
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
