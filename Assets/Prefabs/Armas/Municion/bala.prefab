@@ -122,7 +122,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7260459426120399181}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -153,7 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbf1585f21903c41994b5a1a093db65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::bala
-  speed: 15
+  speed: 18
+  tiempoVida: 3
 --- !u!114 &8438275344326423312
 MonoBehaviour:
   m_ObjectHideFlags: 0

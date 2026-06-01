@@ -9,7 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7233995408790955016}
-  m_Layer: 0
+  - component: {fileID: 6902750014983486736}
+  - component: {fileID: 3634706517725030154}
+  - component: {fileID: 2695808603807718601}
+  m_Layer: 7
   m_Name: Pizarra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +35,75 @@ Transform:
   - {fileID: 3858700013107795566}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6902750014983486736
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113504638919266562}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.3819656, y: 0.09558874, z: 1.2035675}
+  m_Center: {x: 0.0066947937, y: 0.048040897, z: 0}
+--- !u!65 &3634706517725030154
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113504638919266562}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.3162613, y: 2.1763563, z: 0.22162628}
+  m_Center: {x: -0.004058838, y: 1.2069101, z: 0.011104584}
+--- !u!54 &2695808603807718601
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113504638919266562}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &3604676625056706949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40,6 +112,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7233995408790955016}
     m_Modifications:
+    - target: {fileID: -9055872432228248907, guid: f702ceca05122c744abe2699014ec080, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f702ceca05122c744abe2699014ec080, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.28582
@@ -92,13 +168,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7989326920315784780, guid: f702ceca05122c744abe2699014ec080, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -6324623552123561311, guid: f702ceca05122c744abe2699014ec080, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: cd7207e8faacf344abb92c3467572839, type: 2}
+    - target: {fileID: -4291665242713371400, guid: f702ceca05122c744abe2699014ec080, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -4043108806546056035, guid: f702ceca05122c744abe2699014ec080, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -3152201351846014776, guid: f702ceca05122c744abe2699014ec080, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f702ceca05122c744abe2699014ec080, type: 3}
       propertyPath: m_Name
       value: Pizarra
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f702ceca05122c744abe2699014ec080, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131774471668849816, guid: f702ceca05122c744abe2699014ec080, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2195004691787457126, guid: f702ceca05122c744abe2699014ec080, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715363453023549508, guid: f702ceca05122c744abe2699014ec080, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5415091165200109063, guid: f702ceca05122c744abe2699014ec080, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

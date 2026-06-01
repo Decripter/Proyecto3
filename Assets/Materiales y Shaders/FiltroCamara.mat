@@ -38,13 +38,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _Transparencia: 0
-    - _Valor1: 0.07
-    - _Valor2: 0.07
-    - _Valor3: 0.32
+    - _Valor1: 0.11
+    - _Valor2: 0.27
+    - _Valor3: 0.42
     m_Colors:
-    - _Color1: {r: 0.6377357, g: 0.6377357, b: 0.6377357, a: 1}
-    - _Color2: {r: 0.4490565, g: 0.4490565, b: 0.4490565, a: 1}
-    - _Color3: {r: 0.2905661, g: 0.2905661, b: 0.2905661, a: 1}
-    - _Color4: {r: 0, g: 0, b: 0, a: 1}
+    - _Color1: {r: 0, g: 0, b: 0, a: 1}
+    - _Color2: {r: 0.2754717, g: 0.2754717, b: 0.2754717, a: 1}
+    - _Color3: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+    - _Color4: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
