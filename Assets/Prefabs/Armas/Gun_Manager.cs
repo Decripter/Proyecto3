@@ -1,16 +1,18 @@
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Gun_Manager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
-    public GameObject[] Modos;
-    public Color[] Colores;
-    public Material[] Pantalla;
-    public Material[] Arma;
+
+
+    public List<GameObject> Modos = new List<GameObject>();
+    public List<Material> Pantalla = new List<Material>();
+    public List<Material> Arma = new List<Material>();
+    public List<Sprite> Miras = new List<Sprite>();
+
     public Image Centro;
-    public Sprite[] Miras;
     public Sprite MiraDefault;
     [Header("Cositas Arma")]
     public Renderer[] _RendererArma;
@@ -21,7 +23,6 @@ public class Gun_Manager : MonoBehaviour
     public CharacterController jugador;
 
     private int indiceActual = 0;
-
     void Start()
     {
         SeleccionarModo(); // Inicializamos con el primero activo
@@ -30,18 +31,18 @@ public class Gun_Manager : MonoBehaviour
 
     void Update()
     {
-        // 1. Cambio con la rueda del rat�n (Scroll)
+        // 1. Cambio con la rueda del ratón (Scroll)
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll > 0f)
         {
             indiceActual++;
-            if (indiceActual >= Modos.Length) indiceActual = 0;
+            if (indiceActual >= Modos.Count) indiceActual = 0;
             SeleccionarModo();
         }
         else if (scroll < 0f)
         {
             indiceActual--;
-            if (indiceActual < 0) indiceActual = Modos.Length - 1;
+            if (indiceActual < 0) indiceActual = Modos.Count - 1;
             SeleccionarModo();
         }
 
@@ -49,11 +50,11 @@ public class Gun_Manager : MonoBehaviour
         {
             indiceActual = 0; SeleccionarModo(); 
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && Modos.Length > 1)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && Modos.Count > 1)
         { 
             indiceActual = 1; SeleccionarModo(); 
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && Modos.Length > 2) 
+        if (Input.GetKeyDown(KeyCode.Alpha3) && Modos.Count > 2) 
         { indiceActual = 2; SeleccionarModo(); 
         }
 
@@ -67,7 +68,7 @@ public class Gun_Manager : MonoBehaviour
 
         float movimiento = Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical"));
 
-        // Limitamos el m�ximo a 1 para que el Animator no reciba n�meros raros si pulsas dos teclas a la vez
+        // Limitamos el máximo a 1 para que el Animator no reciba números raros si pulsas dos teclas a la vez
         float velocidadPlana = Mathf.Clamp01(movimiento);
 
         ArmaFull.SetFloat("Velocidad", velocidadPlana);
@@ -76,36 +77,49 @@ public class Gun_Manager : MonoBehaviour
 
     void SeleccionarModo()
     {
-        if(Modos.Length == 0)
+        ActualizarVisuales();
+        ArmaAcciones.SetTrigger("CambioModo");
+    }
+
+    void ActualizarVisuales()
+    {
+        if (Modos.Count == 0)
         {
             Centro.sprite = MiraDefault;
-        }        
+
+            // --- NUEVO: Apagamos los renderers si no hay armas ---
+            if (_RendererPantalla != null) _RendererPantalla.enabled = false;
+            foreach (Renderer rend in _RendererArma)
+            {
+                if (rend != null) rend.enabled = false;
+            }
+        }
         else
         {
-            for (int i = 0; i < Modos.Length; i++)
+            // --- NUEVO: Encendemos los renderers porque ya tenemos arma ---
+            if (_RendererPantalla != null) _RendererPantalla.enabled = true;
+            foreach (Renderer rend in _RendererArma)
+            {
+                if (rend != null) rend.enabled = true;
+            }
+
+            for (int i = 0; i < Modos.Count; i++)
             {
                 Modos[i].SetActive(i == indiceActual);
             }
-            Centro.sprite = Miras[indiceActual];
 
-            //_Renderer.material.color = Colores[indiceActual];
+            Centro.sprite = Miras[indiceActual];
             _RendererPantalla.material = Pantalla[indiceActual];
+
             foreach (Renderer rend in _RendererArma)
             {
                 rend.material = Arma[indiceActual];
             }
-            Debug.Log("Modo actual: " + Modos[indiceActual].name);
 
-            if (ArmaAcciones != null)
-            {
-                ArmaAcciones.SetTrigger("CambioModo");
-            }
         }
-
-
-
-        Debug.Log("Modo actual: " + Modos[indiceActual].name);
     }
+
+
 
     /*
      
@@ -115,4 +129,31 @@ public class Gun_Manager : MonoBehaviour
         }
      
      */
+
+    public void AgregarNuevoModo(GameObject nuevoObjetoModo, Material matPantalla, Material matArma, Sprite nuevaMira)
+    {
+        bool esPrimeraVez = Modos.Count == 0;
+
+        // 1. Añadimos el nuevo contenido a nuestras listas dinámicas
+        Modos.Add(nuevoObjetoModo);
+        Pantalla.Add(matPantalla);
+        Arma.Add(matArma);
+        Miras.Add(nuevaMira);
+
+        // 2. Nos saltamos directamente al último índice (el arma recién cogida)
+        indiceActual = Modos.Count - 1;
+
+        // 3. Control de Animaciones
+        if (esPrimeraVez)
+        {
+            ArmaAcciones.SetTrigger("Recogida"); // ◄ Trigger para cuando consigues el arma entera
+            ActualizarVisuales();
+        }
+        else
+        {
+            // Si ya tenías armas, usamos tu método normal que incluye el trigger "CambioModo"
+            SeleccionarModo();
+
+        }
+    }
 }

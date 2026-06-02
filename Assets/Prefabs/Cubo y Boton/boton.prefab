@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8077364364026963469}
+  - component: {fileID: 8700103019301268642}
   - component: {fileID: 8197305021227946188}
   - component: {fileID: 7349288319401619957}
   - component: {fileID: 2995329708328873649}
-  - component: {fileID: 8700103019301268642}
   m_Layer: 0
   m_Name: Boton1 (1)
   m_TagString: Untagged
@@ -35,6 +35,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5519051628051142395}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8700103019301268642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8087578913568821464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e2da1792db0b74199187f50f4875ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::activar_anim
+  Puerta: {fileID: 0}
+  animator: {fileID: 0}
+  sonidoAcierto:
+    Guid:
+      Data1: -1888221056
+      Data2: 1074841744
+      Data3: 1233830287
+      Data4: 159190628
+    Path: event:/Correcto! (1)
+  sonidoPuerta:
+    Guid:
+      Data1: -1028208277
+      Data2: 1274875281
+      Data3: 472239805
+      Data4: -796519513
+    Path: event:/PuertaOpen
 --- !u!33 &8197305021227946188
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -112,34 +140,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8700103019301268642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8087578913568821464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79e2da1792db0b74199187f50f4875ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::activar_anim
-  Puerta: {fileID: 0}
-  animator: {fileID: 0}
-  sonidoAcierto:
-    Guid:
-      Data1: -1888221056
-      Data2: 1074841744
-      Data3: 1233830287
-      Data4: 159190628
-    Path: event:/Correcto! (1)
-  sonidoPuerta:
-    Guid:
-      Data1: -1028208277
-      Data2: 1274875281
-      Data3: 472239805
-      Data4: -796519513
-    Path: event:/PuertaOpen
 --- !u!1001 &5412523333734035728
 PrefabInstance:
   m_ObjectHideFlags: 0

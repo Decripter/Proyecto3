@@ -27,9 +27,6 @@ public class ControladorMenu : MonoBehaviour
     public GameObject managerUI;
     public GameObject armaVisual;
     [Space]
-    public GameObject armaNormal;
-    public GameObject armaGravedad;
-    public GameObject armaPortales;
 
     [Header("NUEVO: Control del Timeline")]
     public PlayableDirector directorTimeline;
@@ -64,10 +61,6 @@ public class ControladorMenu : MonoBehaviour
         if (objetoMira != null) objetoMira.SetActive(false);
         if (managerUI != null) managerUI.SetActive(false);
         if (armaVisual != null) armaVisual.SetActive(false);
-
-        if (armaNormal != null) armaNormal.SetActive(false);
-        if (armaGravedad != null) armaGravedad.SetActive(false);
-        if (armaPortales != null) armaPortales.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -211,10 +204,6 @@ public class ControladorMenu : MonoBehaviour
         if (objetoMira != null) objetoMira.SetActive(true);
         if (managerUI != null) managerUI.SetActive(true);
         if (armaVisual != null) armaVisual.SetActive(true);
-
-        if (armaNormal != null) armaNormal.SetActive(true);
-        if (armaGravedad != null) armaGravedad.SetActive(false);
-        if (armaPortales != null) armaPortales.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
