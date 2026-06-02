@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="AudioFile" id="{a5ffb6a1-52be-4351-a885-b6ff6564da57}">
+	<object class="AudioFile" id="{62253f10-16f3-4703-9dd6-6856c14adc1c}">
 		<property name="assetPath">
-			<value>NarracionInico.wav</value>
+			<value>AudioNarracion03.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
@@ -14,7 +14,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>41.975623582766438</value>
+			<value>40.930997732426306</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{23ce65ac-ab87-43e7-ba4a-dd29eb7c3680}</destination>

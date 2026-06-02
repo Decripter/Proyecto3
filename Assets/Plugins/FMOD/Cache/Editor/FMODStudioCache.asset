@@ -54,6 +54,87 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 20318
+--- !u!114 &-5789790393987027576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/audioNarracion03
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/audioNarracion03
+  Guid:
+    Data1: 1235220089
+    Data2: 1297779441
+    Data3: -1364001366
+    Data4: -1136258421
+  Banks:
+  - {fileID: -1217215068799767073}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 40931
+--- !u!114 &-4942042825744097075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/agarrar 2
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/agarrar 2
+  Guid:
+    Data1: 1388688481
+    Data2: 1174481897
+    Data3: 193368991
+    Data4: -1440554340
+  Banks:
+  - {fileID: -1217215068799767073}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4301832780462887405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/dragon-studio-opening-door-450444
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/dragon-studio-opening-door-450444
+  Guid:
+    Data1: 1357995562
+    Data2: 1331012565
+    Data3: -256627566
+    Data4: -1946048430
+  Banks:
+  - {fileID: -1217215068799767073}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2798466482356894864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,10 +197,10 @@ MonoBehaviour:
   Path: Momentum_Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639159411094054324
+  lastModified: 639160338326283869
   FileSizes:
   - Name: Desktop
-    Value: 883680
+    Value: 911872
   Exists: 1
 --- !u!114 &-1065895699731687877
 MonoBehaviour:
@@ -256,13 +337,16 @@ MonoBehaviour:
   - {fileID: 8636702496372910938}
   - {fileID: -7776081286499377763}
   - {fileID: 4662716513517398233}
+  - {fileID: -5789790393987027576}
+  - {fileID: -4301832780462887405}
+  - {fileID: -4942042825744097075}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1217215068799767073}
   StringsBanks:
   - {fileID: 3983891027762969466}
   cacheVersion: 131859
-  cacheTime: 639159411094134057
+  cacheTime: 639160338326313728
   SerializableEventsDict:
   - key: event:/PistolaLaserV3 (1)
     index: 0
@@ -286,6 +370,12 @@ MonoBehaviour:
     index: 9
   - key: event:/Narracion02
     index: 10
+  - key: event:/audioNarracion03
+    index: 11
+  - key: event:/dragon-studio-opening-door-450444
+    index: 12
+  - key: event:/agarrar 2
+    index: 13
 --- !u!114 &463203596964099304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,10 +492,10 @@ MonoBehaviour:
   Path: Momentum_Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639159411094134057
+  lastModified: 639160338326313728
   FileSizes:
   - Name: Desktop
-    Value: 1252
+    Value: 1414
   Exists: 1
 --- !u!114 &4662716513517398233
 MonoBehaviour:

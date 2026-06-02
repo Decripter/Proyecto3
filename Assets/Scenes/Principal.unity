@@ -8164,8 +8164,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303196878}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.99982876, z: 0, w: 0.018509295}
-  m_LocalPosition: {x: 0.2122727, y: -0.004990908, z: 0.10167651}
+  m_LocalRotation: {x: 0.009365104, y: 0.881616, z: -0.010156401, w: -0.47176528}
+  m_LocalPosition: {x: 0.7009064, y: -0.00060660404, z: 0.11836618}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14893,6 +14893,13 @@ MonoBehaviour:
   matPantalla: {fileID: 2100000, guid: 7b1cc308ab395d542a09a50c1d07899e, type: 2}
   matArma: {fileID: 2100000, guid: 9be60d8a69081fd4f9d4695be1c374f4, type: 2}
   iconoMira: {fileID: -372724897, guid: 697b552914745a7478641c311c3b05d1, type: 3}
+  sonidoRecoger:
+    Guid:
+      Data1: 1388688481
+      Data2: 1174481897
+      Data3: 193368991
+      Data4: -1440554340
+    Path: event:/agarrar 2
 --- !u!65 &587208928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22501,6 +22508,13 @@ MonoBehaviour:
   matPantalla: {fileID: 2100000, guid: cc98444cfbafbdb4f8dac373e323f698, type: 2}
   matArma: {fileID: 2100000, guid: 847b41a80a48d414c86740c0e78860fc, type: 2}
   iconoMira: {fileID: 1662506559, guid: 834597ac69f18fb47bb994b835b50802, type: 3}
+  sonidoRecoger:
+    Guid:
+      Data1: 1388688481
+      Data2: 1174481897
+      Data3: 193368991
+      Data4: -1440554340
+    Path: event:/agarrar 2
 --- !u!65 &910167211
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27520,8 +27534,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093167546}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.008743525, z: -0, w: 0.9999618}
-  m_LocalPosition: {x: -0.004, y: 0.559, z: 0.204}
+  m_LocalRotation: {x: -0.07455631, y: 0.010634377, z: -0.011956648, w: -0.9970885}
+  m_LocalPosition: {x: -0.2, y: 1.3, z: -0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27532,7 +27546,7 @@ Transform:
   - {fileID: 1861677159}
   - {fileID: 843568460}
   m_Father: {fileID: 503914558}
-  m_LocalEulerAnglesHint: {x: 0, y: -1.002, z: 0}
+  m_LocalEulerAnglesHint: {x: 8.565, y: -1.126, z: 1.29}
 --- !u!114 &1093167548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52171,6 +52185,26 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 938565031}
+    - target: {fileID: 8700103019301268642, guid: 813c82cbbff4df648932cb83133dbc20, type: 3}
+      propertyPath: sonidoPuerta.Path
+      value: event:/dragon-studio-opening-door-450444
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700103019301268642, guid: 813c82cbbff4df648932cb83133dbc20, type: 3}
+      propertyPath: sonidoPuerta.Guid.Data1
+      value: 1357995562
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700103019301268642, guid: 813c82cbbff4df648932cb83133dbc20, type: 3}
+      propertyPath: sonidoPuerta.Guid.Data2
+      value: 1331012565
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700103019301268642, guid: 813c82cbbff4df648932cb83133dbc20, type: 3}
+      propertyPath: sonidoPuerta.Guid.Data3
+      value: -256627566
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700103019301268642, guid: 813c82cbbff4df648932cb83133dbc20, type: 3}
+      propertyPath: sonidoPuerta.Guid.Data4
+      value: -1946048430
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52914,6 +52948,13 @@ MonoBehaviour:
   matPantalla: {fileID: 2100000, guid: aeb3bef67b86a7d4984b6f6253ae0c62, type: 2}
   matArma: {fileID: 2100000, guid: 1a6cfd0e1b85d91448cf84a04000f601, type: 2}
   iconoMira: {fileID: -1974171975, guid: 423577ca9bad1bd4790524fb21d547f7, type: 3}
+  sonidoRecoger:
+    Guid:
+      Data1: 1388688481
+      Data2: 1174481897
+      Data3: 193368991
+      Data4: -1440554340
+    Path: event:/agarrar 2
 --- !u!65 &8544884345118874231
 BoxCollider:
   m_ObjectHideFlags: 0
