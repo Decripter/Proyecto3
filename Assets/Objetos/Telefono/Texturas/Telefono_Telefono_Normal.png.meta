@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 697b552914745a7478641c311c3b05d1
+guid: b89de75aa7578474aadb7dd73458b4fc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
-    sRGBTexture: 1
+    enableMipMap: 1
+    sRGBTexture: 0
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -34,27 +34,27 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
+    wrapU: 0
+    wrapV: 0
     wrapW: 0
-  nPOTScale: 0
+  nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 60
-  spriteBorder: {x: 267, y: 251, z: 233, w: 243}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
-  spriteTessellationDetail: 0
-  textureType: 8
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 1
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -121,106 +121,21 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Gravedad_0
-      rect:
-        serializedVersion: 2
-        x: 269
-        y: 251
-        width: 578
-        height: 580
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbbd417d53f26ef46817b6df77dffe56
-      internalID: -372724897
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    outline:
-    - - {x: -16, y: -172}
-      - {x: 98, y: -172}
-      - {x: 52, y: -218}
-      - {x: 52, y: -289}
-      - {x: 103, y: -289}
-      - {x: 182, y: -275}
-      - {x: 259, y: -208}
-      - {x: 310, y: -89}
-      - {x: 310, y: -31}
-      - {x: 246, y: -31}
-      - {x: 238, y: -32}
-      - {x: 112, y: -158}
-      - {x: 112, y: -127}
-      - {x: 97, y: -96}
-      - {x: -41, y: -96}
-      - {x: -78, y: -109}
-      - {x: -78, y: -109.20856}
-      - {x: -117.496704, y: -84.496704}
-      - {x: -82, y: -49}
-      - {x: -82, y: 71}
-      - {x: -110.62816, y: 94.423035}
-      - {x: -60.39325, y: 127.82097}
-      - {x: -31, y: 103}
-      - {x: 73, y: 103}
-      - {x: 113, y: 143}
-      - {x: 113, y: 154}
-      - {x: 72, y: 178}
-      - {x: -15, y: 178}
-      - {x: -15, y: 296}
-      - {x: -89, y: 296}
-      - {x: -266, y: 221}
-      - {x: -275, y: 156}
-      - {x: -275, y: 37}
-      - {x: -197, y: 37}
-      - {x: -152.58397, y: 66.52934}
-      - {x: -157, y: 57}
-      - {x: -157, y: -37}
-      - {x: -148.06918, y: -65.368484}
-      - {x: -203, y: -31}
-      - {x: -275, y: -31}
-      - {x: -275, y: -94}
-      - {x: -197, y: -224}
-      - {x: -137, y: -264}
-      - {x: -49, y: -289}
-      - {x: -16, y: -289}
-    - - {x: 310, y: 106}
-      - {x: 199, y: 279}
-      - {x: 114, y: 296}
-      - {x: 52, y: 296}
-      - {x: 52, y: 224}
-      - {x: 241, y: 38}
-      - {x: 310, y: 38}
-    - - {x: 193, y: -66}
-      - {x: 193, y: 48}
-      - {x: 171, y: 98}
-      - {x: 161, y: 98}
-      - {x: 118, y: 57}
-      - {x: 118, y: -51}
-      - {x: 144, y: -91}
-      - {x: 170, y: -91}
+    sprites: []
+    outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
-    nameFileIdTable:
-      Gravedad_0: -372724897
+      entries: []
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

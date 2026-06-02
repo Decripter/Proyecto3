@@ -11,6 +11,7 @@ public class Gun_Manager : MonoBehaviour
     public Material[] Arma;
     public Image Centro;
     public Sprite[] Miras;
+    public Sprite MiraDefault;
     [Header("Cositas Arma")]
     public Renderer[] _RendererArma;
     public Renderer _RendererPantalla;
@@ -75,25 +76,33 @@ public class Gun_Manager : MonoBehaviour
 
     void SeleccionarModo()
     {
-        for (int i = 0; i < Modos.Length; i++)
+        if(Modos.Length == 0)
         {
-            Modos[i].SetActive(i == indiceActual);
-            
-        }
-        Centro.sprite = Miras[indiceActual];
-        //_Renderer.material.color = Colores[indiceActual];
-        _RendererPantalla.material = Pantalla[indiceActual];
+            Centro.sprite = MiraDefault;
+        }        
+        else
+        {
+            for (int i = 0; i < Modos.Length; i++)
+            {
+                Modos[i].SetActive(i == indiceActual);
+            }
+            Centro.sprite = Miras[indiceActual];
 
-        foreach (Renderer rend in _RendererArma)
-        {
-            rend.material = Arma[indiceActual];
-        }
-        Debug.Log("Modo actual: " + Modos[indiceActual].name);
+            //_Renderer.material.color = Colores[indiceActual];
+            _RendererPantalla.material = Pantalla[indiceActual];
+            foreach (Renderer rend in _RendererArma)
+            {
+                rend.material = Arma[indiceActual];
+            }
+            Debug.Log("Modo actual: " + Modos[indiceActual].name);
 
-        if (ArmaAcciones != null)
-        {
-            ArmaAcciones.SetTrigger("CambioModo");
+            if (ArmaAcciones != null)
+            {
+                ArmaAcciones.SetTrigger("CambioModo");
+            }
         }
+
+
 
         Debug.Log("Modo actual: " + Modos[indiceActual].name);
     }

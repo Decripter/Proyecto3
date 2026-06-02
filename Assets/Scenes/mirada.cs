@@ -23,7 +23,7 @@ public class mirada : MonoBehaviour
     public Animator Mira;
 
     [Header("Sonidos de FMOD")]
-    public FMODUnity.EventReference sonidoAgarre;        // Tecla E
+    public FMODUnity.EventReference sonidoAgarre; 
     public FMODUnity.EventReference sonidoSoltar;
 
     public float DistanciaPortal;
@@ -39,88 +39,87 @@ public class mirada : MonoBehaviour
 
     void Update()
     {
+        // --- MOVIMIENTO DE CÁMARA ---
         float x = Input.GetAxis("Mouse X") * speed;
         float y = Input.GetAxis("Mouse Y") * speed;
 
         girox -= y;
         girox = Mathf.Clamp(girox, -90f, 90f);
-
         transform.localRotation = Quaternion.Euler(girox, 0, 0);
         Robert.transform.Rotate(Vector3.up * x);
 
         Debug.DrawRay(transform.position, transform.forward * rayDistance, Color.red);
 
+        // --- SISTEMA DE INTERACCIÓN POR INTERFAZ ---
         RaycastHit hit;
-        bool detectar = false;
+        IInteractable interactableActual = null;
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, rayDistance, Objeto))
+        // Lanzamos el rayo (ya no filtramos por Layer, choca con todo)
+        if (Physics.Raycast(transform.position, transform.forward, out hit, rayDistance))
         {
-            if (hit.transform.GetComponent<Rigidbody>() != null || hit.transform.GetComponent<CambioGravedad>() != null)
-            {
-                detectar = true;
-            }
+            // Intentamos obtener la interfaz. Si la tiene, se guarda en interactableActual
+            hit.collider.TryGetComponent<IInteractable>(out interactableActual);
         }
 
-        Mira.SetBool("Est", detectar);
+        // Animación de la mira (se expande si interactableActual no es nulo)
+        Mira.SetBool("Est", interactableActual != null && !Ocupado);
 
-        // --- AGARRAR OBJETOS (TECLA E) ---
-        if (Physics.Raycast(transform.position, transform.forward, out hit, rayDistance, Objeto) && Input.GetKeyDown(KeyCode.E))
+        // --- LÓGICA DE INPUT (TECLA E) ---
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (!Ocupado)
+            if (Ocupado)
             {
-                rbExt = hit.transform.GetComponent<Rigidbody>();
-                fj.connectedBody = rbExt;
-                Ocupado = true;
-                // Sonido al agarrar
-                FMODUnity.RuntimeManager.PlayOneShot(sonidoAgarre, transform.position);
+                SoltarObjeto();
             }
-            else
+            else if (interactableActual != null)
             {
-                fj.connectedBody = null;
-                rbExt.linearVelocity = Vector3.zero;
-                rbExt.angularVelocity = Vector3.zero;
-                Ocupado = false;
-
-                // <-- NUEVO: Sonido al soltar (con filtro de seguridad)
-                if (!sonidoSoltar.IsNull)
+                // 1. ¿Es un objeto físico/agarrable? 
+                // Comprobamos si el componente real es de tipo 'ObjetoFisico'
+                if (interactableActual is Objeto)
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot(sonidoSoltar, transform.position);
-                }
-            }
-        }
-
-
-
-        // --- INVERTIR GRAVEDAD (TECLA Z) ---
-        /*if (Physics.Raycast(transform.position, transform.forward, out hit, rayDistance) && Input.GetKeyDown(KeyCode.Z))
-        {
-            Gravedad = hit.transform.GetComponent<CambioGravedad>();
-            if (Gravedad != null)
-            {
-                if (Gravedad.GetValor() < 0)
-                {
-                    Gravedad.Alterar(9.8f);
-                    Gravedad.Invertir = false;
+                    interactableActual.Interactuar(this); // Le pasamos la mirada para el FixedJoint
                 }
                 else
                 {
-                    Gravedad.Alterar(-9.8f);
+                    // 2. Si no es un objeto físico, asumimos que es un botón, nota o palanca
+                    interactableActual.Interactuar(); // Ejecuta la versión limpia sin parámetros
                 }
-                Gravedad.StartCoroutine(Gravedad.EfectoInversion());
             }
-        }*/
+        }
+    }
 
+    // --- MÉTODOS PÚBLICOS PARA LOS OBJETOS ---
+    public void AgarrarObjeto(Rigidbody rbObjeto)
+    {
+        rbExt = rbObjeto;
+        fj.connectedBody = rbExt;
+        Ocupado = true;
+        FMODUnity.RuntimeManager.PlayOneShot(sonidoAgarre, transform.position);
+    }
 
+    public void SoltarObjeto()
+    {
+        fj.connectedBody = null;
 
+        if (rbExt != null)
+        {
+            rbExt.linearVelocity = Vector3.zero;
+            rbExt.angularVelocity = Vector3.zero;
+            rbExt = null;
+        }
 
+        Ocupado = false;
+
+        if (!sonidoSoltar.IsNull)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(sonidoSoltar, transform.position);
+        }
     }
 
     public void ResetearMirada()
     {
-        girox = 0f; // Ponemos a cero el acumulador vertical
-        transform.localRotation = Quaternion.identity; // Alineamos la cámara al frente
-
-        // Forzamos al Rigidbody de la cámara a detener toda rotación o velocidad acumulada
+        girox = 0f;
+        transform.localRotation = Quaternion.identity;
         if (rb == null) rb = GetComponent<Rigidbody>();
         if (rb != null)
         {
