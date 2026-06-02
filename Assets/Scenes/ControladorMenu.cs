@@ -97,7 +97,7 @@ public class ControladorMenu : MonoBehaviour
     }
 
     // ====================================================================
-    // NUEVOS MÉTODOS PARA LOS CRÉDITOS
+    // NUEVOS MÉTODOS PARA LOS CRÉDITOS Y SALIDA
     // ====================================================================
     public void PulsarCreditos() // ◄ NUEVO
     {
@@ -108,7 +108,18 @@ public class ControladorMenu : MonoBehaviour
     public void PulsarVolverCreditos() // ◄ NUEVO
     {
         if (canvasCreditos != null) canvasCreditos.SetActive(false); // Apaga los créditos
-        if (canvasMenu != null) canvasMenu.SetActive(true);         // Vuelve a encender el menú principal
+        if (canvasMenu != null) canvasMenu.SetActive(true);          // Vuelve a encender el menú principal
+    }
+
+    public void PulsarExit() // ◄ NUEVO: Cierra la aplicación
+    {
+        // Cierra el ejecutable del juego compilado
+        Application.Quit();
+
+        // Detiene el modo de prueba si estás dentro del editor de Unity
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
     // ====================================================================
 
