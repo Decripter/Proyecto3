@@ -10,7 +10,7 @@ public class balaGravedad : MonoBehaviour
     private Renderer rend;
     private void OnCollisionEnter(Collision collision)
     {
-        if(!impactada && collision.transform.TryGetComponent<TPable>(out TPable obj))
+        if(!impactada && collision.transform.TryGetComponent<CambioGravedad>(out CambioGravedad obj))
         {
             Debug.Log("Invirtiendo");
             CambioGravedad Gravedad = obj.transform.GetComponent<CambioGravedad>();
@@ -28,6 +28,11 @@ public class balaGravedad : MonoBehaviour
 
             Gravedad.StartCoroutine(Gravedad.EfectoInversion());
                 impactada = true;
+            Debug.Log("Cambio");
+        }
+        else
+        {
+            Debug.Log("No Cambio");
         }
 
     }

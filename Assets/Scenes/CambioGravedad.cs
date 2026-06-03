@@ -8,7 +8,7 @@ public class CambioGravedad : MonoBehaviour
     public bool Invertir;
     private Rigidbody rb;
 
-    [SerializeField] private float Valor;
+    [SerializeField] public float Valor;
     
     void Start()
     {
@@ -50,13 +50,24 @@ public class CambioGravedad : MonoBehaviour
 
     public IEnumerator EfectoInversion()
     {
-        Renderer rend = GetComponent<Renderer>();
-        if (rend == null) yield break;
+        // 1. Buscamos TODOS los renderers, tanto en el padre como en los hijos
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
 
-        Material mat = rend.material; // Crea una instancia única para este objeto
-        Color colorOriginal = mat.GetColor("_BaseColor"); // O "_Color" según tu shader
-        Color colorPulso = Color.purple; // Color del pulso de gravedad
+        // Si el array está vacío (no hay mallas), cortamos
+        if (renderers.Length == 0) yield break;
 
+        // 2. Creamos "cajas" para guardar los materiales y colores de cada pieza
+        Material[] materiales = new Material[renderers.Length];
+        Color[] coloresOriginales = new Color[renderers.Length];
+
+        // Rellenamos las cajas leyendo el estado inicial de cada pieza
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            materiales[i] = renderers[i].material; // Crea la instancia única
+            coloresOriginales[i] = materiales[i].GetColor("_BaseColor");
+        }
+
+        Color colorPulso = Color.purple;
         float duracion = 0.25f;
         float tiempo = 0f;
 
@@ -64,20 +75,24 @@ public class CambioGravedad : MonoBehaviour
         {
             tiempo += Time.deltaTime;
             float t = tiempo / duracion;
-
-            // Curva de "pico": sube y baja rápido (PingPong o Sinusoidal)
             float intensidad = Mathf.Sin(t * Mathf.PI);
 
-            // Mezclamos el color original con el de pulso y subimos la emisión
-            mat.SetColor("_BaseColor", Color.Lerp(colorOriginal, colorPulso, intensidad));
-            mat.SetColor("_EmissionColor", colorPulso * intensidad * 0.5f); // Multiplicador de brillo
-            mat.EnableKeyword("_EMISSION");
+            // 3. Aplicamos el color modificado a TODOS los materiales guardados
+            for (int i = 0; i < materiales.Length; i++)
+            {
+                materiales[i].SetColor("_BaseColor", Color.Lerp(coloresOriginales[i], colorPulso, intensidad));
+                materiales[i].SetColor("_EmissionColor", colorPulso * intensidad * 0.5f);
+                materiales[i].EnableKeyword("_EMISSION");
+            }
 
             yield return null;
         }
 
-        // Resetear al estado original
-        mat.SetColor("_BaseColor", colorOriginal);
-        mat.SetColor("_EmissionColor", Color.black);
+        // 4. Restauramos cada pieza a su color original correspondiente
+        for (int i = 0; i < materiales.Length; i++)
+        {
+            materiales[i].SetColor("_BaseColor", coloresOriginales[i]);
+            materiales[i].SetColor("_EmissionColor", Color.black);
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TPable : MonoBehaviour
@@ -49,10 +50,9 @@ public class TPable : MonoBehaviour
         Physics.IgnoreLayerCollision(7,8, false);
     }
 
-    public void Teletransportar(Transform entrada, Transform salida, Collider ParedAtras, Collider ParedBtras)
+    public void Teletransportar(Transform entrada, Transform salida, List<Collider> paredesEntrada, List<Collider> paredesSalida)
     {
         Debug.Log("cruzando");
-        //Cruzando = true;
 
         Vector3 posRelativa = entrada.InverseTransformPoint(transform.position);
         Vector3 posInvertida = Quaternion.Euler(0, 180, 0) * posRelativa;
@@ -64,31 +64,32 @@ public class TPable : MonoBehaviour
         Vector3 speedLocal = entrada.InverseTransformDirection(rb.linearVelocity);
         rb.linearVelocity = salida.TransformDirection(Quaternion.Euler(0, 180, 0) * speedLocal);
 
-        StartCoroutine(ReactivarColision(entrada, salida, ParedAtras, ParedBtras));
-
-        /*Vector3 posSalida = salida.InverseTransformPoint(transform.position);
-
-        
-        if (posSalida.z > 0.0005f) 
-        {
-            Physics.IgnoreLayerCollision(7, 8, false);
-        }*/
+        // Se las pasamos a la corrutina
+        StartCoroutine(ReactivarColision(entrada, salida, paredesEntrada, paredesSalida));
     }
 
-    private IEnumerator ReactivarColision(Transform entrada, Transform salida, Collider Atras, Collider BAtras)
+    private IEnumerator ReactivarColision(Transform entrada, Transform salida, List<Collider> paredesEntrada, List<Collider> paredesSalida)
     {
         // Esperamos a que el objeto esté completamente "fuera" del plano
         yield return new WaitUntil(() => {
             Cruzando = true;
             Vector3 posRelativa = salida.InverseTransformPoint(transform.position);
-            
-            return posRelativa.z > 0.005f; //
+            return posRelativa.z > 0.005f;
         });
-        Cruzando = false;
-        Physics.IgnoreCollision(_Collider, Atras, false);
-        Physics.IgnoreCollision(_Collider, BAtras, false);
-        //Physics.IgnoreLayerCollision(7, 8, false);
 
+        Cruzando = false;
+
+        // Reactivamos TODAS las paredes del portal de entrada
+        foreach (Collider col in paredesEntrada)
+        {
+            if (col != null) Physics.IgnoreCollision(_Collider, col, false);
+        }
+
+        // Reactivamos TODAS las paredes del portal de salida
+        foreach (Collider col in paredesSalida)
+        {
+            if (col != null) Physics.IgnoreCollision(_Collider, col, false);
+        }
     }
 
 }

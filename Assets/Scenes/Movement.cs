@@ -4,73 +4,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    //Intento de RB
-    /*
-    private Rigidbody rb;
-    
-    [SerializeField] public float Speed;   
-    [SerializeField] private float Salto;
-    [SerializeField] private float gravedad = -9.81f;
-    public float verticalVelocity;
-    public Vector3 momentumPortal;
-
-    private GroundChecker _GroundChecker;
-    public PortalChecker PortalChecker;
-
-    public float empuje;
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        _GroundChecker = GetComponentInChildren<GroundChecker>();
-    }
-
-    
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && _GroundChecker.Tocando && Mathf.Abs(rb.linearVelocity.y) <= 0)
-        {
-            salto();
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        
-        mover();
-        AplicarGravedad();
-
-    }
-
-    private void salto()
-    {
-        Debug.Log("Saltando");
-        rb.AddForce(transform.up * Salto);
-    }
-
-    private void mover()
-    {
-        // 2. Input WASD
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        Vector3 direccionTarget = (transform.forward * v + transform.right * h).normalized * Speed;
-
-        Vector3 MovimientoTotal = transform.position;
-        MovimientoTotal += direccionTarget * Speed * Time.deltaTime;
-
-        rb.MovePosition(MovimientoTotal);
-
-        
-    }
-
-    private void AplicarGravedad()
-    {
-            rb.AddForce(-transform.up * -9.8f * gravedad);
-    }
-    public void AplicarVelocidad(Vector3 Velocidad)
-    {
-
-    }*/
-
     private CharacterController _Controller;
     public float AirSpeed;
     public float GroundSpeed;
@@ -93,6 +26,10 @@ public class Movement : MonoBehaviour
 
     public float empuje;
 
+    private Vector3 velocidadPlataforma;
+    private Rigidbody plataformaActual;
+    private Vector3 ultimaVelocidadPlataforma;
+
     //private FMODUnity.StudioEventEmitter pasosEmitter;
     void Start()
     {
@@ -103,12 +40,77 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        ActualizarPlataforma(); // Leemos la mesa antes de movernos
+
         mover();
         AplicarGravedad();
         if (Input.GetKeyDown(KeyCode.Space) && _GroundChecker.Tocando)
         {
             salto();
         }
+    }
+
+    // --- NUEVA FUNCIÓN: EL EFECTO POLIZÓN ---
+    private void ActualizarPlataforma()
+    {
+        velocidadPlataforma = Vector3.zero;
+
+        if (_GroundChecker.Tocando)
+        {
+            if (Physics.Raycast(_GroundChecker.transform.position, Vector3.down, out RaycastHit hit, 0.5f))
+            {
+                Rigidbody rbSuelo = hit.collider.GetComponent<Rigidbody>();
+
+                if (rbSuelo != null)
+                {
+                    velocidadPlataforma = rbSuelo.linearVelocity;
+
+                    // --- 1. EL FRENAZO BRUSCO (Mantenimiento de Inercia en suelo) ---
+                    // Restamos la velocidad pasada con la actual para ver si frenó de golpe
+                    Vector3 decelaracion = ultimaVelocidadPlataforma - velocidadPlataforma;
+
+                    if (decelaracion.magnitude > 3f) // Umbral de frenazo brusco
+                    {
+                        // Le metemos esa fuerza fantasma al jugador para que resbale hacia adelante
+                        fuerza += decelaracion;
+                    }
+
+                    // Guardamos los datos para el frame que viene
+                    ultimaVelocidadPlataforma = velocidadPlataforma;
+                    plataformaActual = rbSuelo;
+                }
+                else
+                {
+                    // Pisamos suelo estático normal, borramos la memoria
+                    ResetearInerciaPlataforma();
+                }
+            }
+        }
+        else
+        {
+            // --- 2. EL SALTO DEL POLIZÓN (Mantenimiento de Inercia en el aire) ---
+            // Acabamos de dejar de tocar el suelo, pero en el frame anterior estábamos en una plataforma
+            if (plataformaActual != null)
+            {
+                // Te sumamos la inercia a tu cuerpo para que sigas volando en esa dirección
+                fuerza.x += ultimaVelocidadPlataforma.x;
+                fuerza.z += ultimaVelocidadPlataforma.z;
+
+                // Si la plataforma estaba subiendo cuando saltaste, te da un empujón extra hacia arriba
+                if (ultimaVelocidadPlataforma.y > 0)
+                {
+                    fuerza.y += ultimaVelocidadPlataforma.y;
+                }
+
+                ResetearInerciaPlataforma();
+            }
+        }
+    }
+
+    private void ResetearInerciaPlataforma()
+    {
+        plataformaActual = null;
+        ultimaVelocidadPlataforma = Vector3.zero;
     }
 
     private void salto()
@@ -136,7 +138,8 @@ public class Movement : MonoBehaviour
         currentSpeed = Vector3.Lerp(currentSpeed, movertarget, aceleracion * Time.deltaTime);
 
 
-        _Controller.Move(currentSpeed * Time.deltaTime);
+        //_Controller.Move(currentSpeed * Time.deltaTime);
+        _Controller.Move((currentSpeed + velocidadPlataforma) * Time.deltaTime);
     }
 
     private void AplicarGravedad()
@@ -150,7 +153,7 @@ public class Movement : MonoBehaviour
         float frenado;
         if (_GroundChecker.Tocando)
         {
-            frenado = 10f;
+            frenado = 3f;
         }
         else
         {
@@ -162,33 +165,6 @@ public class Movement : MonoBehaviour
         fuerza.y += gravedad * Time.deltaTime;
         _Controller.Move(fuerza * Time.deltaTime);
     }
-
-    //// --- NUEVA FUNCIÓN PARA CONTROLAR EL AUDIO LARGO ---
-    //private void ControlarAudioPasos()
-    //{
-    //    if (pasosEmitter == null) return;
-
-    //    // Comprobamos si el jugador se está moviendo de verdad en los ejes X o Z
-    //    bool seEstaMoviendo = Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f || Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f;
-
-    //    // Queremos que suene si: Toca el suelo AND Se está moviendo AND No está en la zona del portal
-    //    if (_GroundChecker.Tocando && seEstaMoviendo && !PortalChecker.EnZonaDePortal)
-    //    {
-    //        // Si el audio no está reproduciéndose ya, lo encendemos
-    //        if (!pasosEmitter.IsPlaying())
-    //        {
-    //            pasosEmitter.Play();
-    //        }
-    //    }
-    //    else
-    //    {
-    //        // Si se para, salta o va por el aire, apagamos el audio largo
-    //        if (pasosEmitter.IsPlaying())
-    //        {
-    //            pasosEmitter.Stop();
-    //        }
-    //    }
-    //}
 
     public void AplicarVelocidad(Vector3 Velocidad)
     {

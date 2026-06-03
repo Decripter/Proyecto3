@@ -58,11 +58,11 @@ MonoBehaviour:
     Path: event:/Correcto! (1)
   sonidoPuerta:
     Guid:
-      Data1: -1028208277
-      Data2: 1274875281
-      Data3: 472239805
-      Data4: -796519513
-    Path: event:/PuertaOpen
+      Data1: 1357995562
+      Data2: 1331012565
+      Data3: -256627566
+      Data4: -1946048430
+    Path: event:/dragon-studio-opening-door-450444
 --- !u!33 &8197305021227946188
 MeshFilter:
   m_ObjectHideFlags: 0

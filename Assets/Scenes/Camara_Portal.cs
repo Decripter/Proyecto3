@@ -1,11 +1,5 @@
-﻿/*using System.Collections;
-using Unity.Mathematics;
-using UnityEditor.ShaderGraph.Internal;
-using UnityEngine;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.SocialPlatforms;*/
-
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 // Estos son seguros para Build:
@@ -25,53 +19,61 @@ public class Camara_Portal : MonoBehaviour
     public bool Player_Cerca;
     public float umbral = 0.31f;
     public bool esPlayer = false;
-    public Collider ParedAtras;
-    public Collider ParedBtras;
+    public List<Collider> ParedesAtrasA = new List<Collider>();
+    public List<Collider> ParedesAtrasB = new List<Collider>();
 
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.TryGetComponent<TPable>(out TPable obj))
         {
+            // --- LIMPIEZA INICIAL ---
+            ParedesAtrasA.Clear();
+            ParedesAtrasB.Clear();
 
-            if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1f))
+            // --- PORTAL A: Rayo perforante hacia atrás ---
+            RaycastHit[] hitsA = Physics.RaycastAll(transform.position, -transform.forward, 1f);
+            foreach (RaycastHit hit in hitsA)
             {
-
-                ParedAtras = hit.collider;
-                Physics.IgnoreCollision(other, ParedAtras, true);
-                //Physics.IgnoreLayerCollision(7,8,true);
+                Collider col = hit.collider;
+                // Evitamos apagar la colisión con nosotros mismos u objetos importantes
+                if (col != other && !col.isTrigger)
+                {
+                    ParedesAtrasA.Add(col);
+                    Physics.IgnoreCollision(other, col, true);
+                }
             }
 
-            if (Physics.Raycast(OtroPortal.position, -transform.forward, out RaycastHit hit2, 1f))
+            // --- PORTAL B: Rayo perforante hacia atrás ---
+            RaycastHit[] hitsB = Physics.RaycastAll(OtroPortal.position, -transform.forward, 1f);
+            foreach (RaycastHit hit in hitsB)
             {
-
-                ParedBtras = hit2.collider;
-                Physics.IgnoreCollision(other, ParedBtras, true);
+                Collider col = hit.collider;
+                if (col != other && !col.isTrigger)
+                {
+                    ParedesAtrasB.Add(col);
+                    Physics.IgnoreCollision(other, col, true);
+                }
             }
-        }
-        else
-        {
-            esPlayer = true;
-            Player_Cerca = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1f))
+        // Restauramos las colisiones del Portal A
+        foreach (Collider col in ParedesAtrasA)
         {
-            ParedAtras = hit.collider;
-            Physics.IgnoreCollision(other, ParedAtras, false);
-            //Physics.IgnoreLayerCollision(7,8,true);
+            if (col != null) Physics.IgnoreCollision(other, col, false);
         }
+        ParedesAtrasA.Clear();
 
-        if (Physics.Raycast(OtroPortal.position, -transform.forward, out RaycastHit hit2, 1f))
+        // Restauramos las colisiones del Portal B
+        foreach (Collider col in ParedesAtrasB)
         {
-
-            ParedBtras = hit2.collider;
-            Physics.IgnoreCollision(other, ParedBtras, false);
-
+            if (col != null) Physics.IgnoreCollision(other, col, false);
         }
+        ParedesAtrasB.Clear();
+
         Player_Cerca = false;
     }
 
@@ -87,7 +89,7 @@ public class Camara_Portal : MonoBehaviour
 
             if (posRelativa.z < 0) // Cruz� al lado negativo
             {
-                obj.Teletransportar(transform, OtroPortal, ParedAtras, ParedBtras);
+                obj.Teletransportar(transform, OtroPortal, ParedesAtrasA, ParedesAtrasB);
             }
         }
         else
@@ -233,29 +235,4 @@ public class Camara_Portal : MonoBehaviour
     }
 
 
-    /*
-    private void OnDrawGizmos()
-    {
-        Gizmos.matrix = transform.localToWorldMatrix;
-
-        Vector3 posRelativa = transform.InverseTransformPoint(CamaraJugador.transform.position);
-
-        bool estaEnAreaXY = Mathf.Abs(posRelativa.x) < 0.02f && Mathf.Abs(posRelativa.y) < 0.02f;
-        // El TP ocurre cuando puntoPos < 0, o sea posRelativa.z < 0
-        bool estaEnProfundidad = posRelativa.z < 0.05f && posRelativa.z > -0.1f;
-
-        // CAMBIO DE COLOR: 
-        // - Rojo: Est�s fuera.
-        // - Amarillo: Est�s frente al portal (XY correcto) pero no has cruzado.
-        // - Azul: Tp Est�s dentro y el c�digo deber�a dispararse.
-        if (estaEnAreaXY && estaEnProfundidad) Gizmos.color = Color.blue;
-        else if (estaEnAreaXY) Gizmos.color = Color.yellow;
-        else Gizmos.color = Color.red;
-
-        Vector3 centro = new Vector3(0, 0, -0.025f); // Centrado ligeramente hacia atr�s
-        Vector3 tamano = new Vector3(0.02f * 2, 0.02f * 2, 0.15f);
-
-        Gizmos.DrawWireCube(centro, tamano); // WireCube para ver a trav�s de �l
-    }
-    */
 }
