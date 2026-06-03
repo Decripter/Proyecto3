@@ -23,6 +23,9 @@ public class Gun_Manager : MonoBehaviour
     public CharacterController jugador;
 
     private int indiceActual = 0;
+
+    [Header("NUEVO FMOD: Sonido")]
+    public FMODUnity.EventReference sonidoRecoger; // ◄ NUEVO: Arrastra aquí el evento de FMOD
     void Start()
     {
         SeleccionarModo(); // Inicializamos con el primero activo
@@ -83,6 +86,13 @@ public class Gun_Manager : MonoBehaviour
 
     void ActualizarVisuales()
     {
+
+        // 1. REPRODUCIR SONIDO CON FMOD (Antes de destruir el objeto)
+        if (!sonidoRecoger.IsNull)
+        {
+            // Reproduce el sonido en la posición exacta en 3D donde estaba el arma
+            FMODUnity.RuntimeManager.PlayOneShot(sonidoRecoger, transform.position);
+        }
         if (Modos.Count == 0)
         {
             Centro.sprite = MiraDefault;

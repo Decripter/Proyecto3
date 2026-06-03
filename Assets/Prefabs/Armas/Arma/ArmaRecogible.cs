@@ -12,8 +12,7 @@ public class ArmaRecogible : MonoBehaviour, IInteractable
     public Material matArma;
     public Sprite iconoMira;
 
-    [Header("NUEVO FMOD: Sonido")]
-    public FMODUnity.EventReference sonidoRecoger; // ◄ NUEVO: Arrastra aquí el evento de FMOD
+
 
     // Versión para si interactúas con raycast directo
     public void Interactuar(mirada jugador)
@@ -30,12 +29,6 @@ public class ArmaRecogible : MonoBehaviour, IInteractable
     private void Recoger()
     {
 
-        // 1. REPRODUCIR SONIDO CON FMOD (Antes de destruir el objeto)
-        if (!sonidoRecoger.IsNull)
-        {
-            // Reproduce el sonido en la posición exacta en 3D donde estaba el arma
-            FMODUnity.RuntimeManager.PlayOneShot(sonidoRecoger, transform.position);
-        }
 
         // Le mandamos todo el pack de datos al manager
         managerJugador.AgregarNuevoModo(objetoModoAsociado, matPantalla, matArma, iconoMira);
