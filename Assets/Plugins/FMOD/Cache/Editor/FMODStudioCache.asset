@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9105631467583236595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CojerCobjeto
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/CojerCobjeto
+  Guid:
+    Data1: 652374713
+    Data2: 1130142194
+    Data3: 281060483
+    Data4: 442121844
+  Banks:
+  - {fileID: -1217215068799767073}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7797623329589718787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,10 +251,10 @@ MonoBehaviour:
   Path: Momentum_Audio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639161113707965434
+  lastModified: 639161147392303184
   FileSizes:
   - Name: Desktop
-    Value: 924800
+    Value: 1074880
   Exists: 1
 --- !u!114 &-1065895699731687877
 MonoBehaviour:
@@ -368,13 +395,15 @@ MonoBehaviour:
   - {fileID: -4301832780462887405}
   - {fileID: -4942042825744097075}
   - {fileID: -7232263445500275781}
+  - {fileID: 4147475433788996591}
+  - {fileID: -9105631467583236595}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1217215068799767073}
   StringsBanks:
   - {fileID: 3983891027762969466}
   cacheVersion: 131859
-  cacheTime: 639161113708056735
+  cacheTime: 639161147392323091
   SerializableEventsDict:
   - key: event:/PistolaLaserV3 (1)
     index: 0
@@ -406,6 +435,10 @@ MonoBehaviour:
     index: 13
   - key: event:/freesound_community-oldphonehangup-96652
     index: 14
+  - key: event:/Prodjoseph-glitch-162763
+    index: 15
+  - key: event:/CojerCobjeto
+    index: 16
 --- !u!114 &463203596964099304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,11 +555,38 @@ MonoBehaviour:
   Path: Momentum_Audio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639161113708056735
+  lastModified: 639161147392323091
   FileSizes:
   - Name: Desktop
-    Value: 1486
+    Value: 1592
   Exists: 1
+--- !u!114 &4147475433788996591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Prodjoseph-glitch-162763
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Prodjoseph-glitch-162763
+  Guid:
+    Data1: -563809659
+    Data2: 1335346531
+    Data3: -1046764649
+    Data4: -526849021
+  Banks:
+  - {fileID: -1217215068799767073}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10710
 --- !u!114 &4662716513517398233
 MonoBehaviour:
   m_ObjectHideFlags: 0

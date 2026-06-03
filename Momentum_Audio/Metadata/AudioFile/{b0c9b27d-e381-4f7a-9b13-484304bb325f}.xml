@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="AudioFile" id="{5070a40e-add0-4c2c-993b-2bbe48e6790b}">
+	<object class="AudioFile" id="{b0c9b27d-e381-4f7a-9b13-484304bb325f}">
 		<property name="assetPath">
-			<value>CojerCobjeto.wav</value>
+			<value>prodjoseph-glitch-162763.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
 		</property>
 		<property name="channelCount">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.8772789115646259</value>
+			<value>10.710204081632654</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{23ce65ac-ab87-43e7-ba4a-dd29eb7c3680}</destination>
