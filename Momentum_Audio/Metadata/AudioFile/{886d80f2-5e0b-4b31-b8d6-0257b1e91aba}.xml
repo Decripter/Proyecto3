@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{886d80f2-5e0b-4b31-b8d6-0257b1e91aba}">
+		<property name="assetPath">
+			<value>freesound_community-oldphonehangup-96652.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.7763265306122449</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{23ce65ac-ab87-43e7-ba4a-dd29eb7c3680}</destination>
+		</relationship>
+	</object>
+</objects>

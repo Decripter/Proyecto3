@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ReiniciarHabitacion : MonoBehaviour, IInteractable
@@ -10,15 +10,18 @@ public class ReiniciarHabitacion : MonoBehaviour, IInteractable
     public Camara_Portal Portal1;
     public Camara_Portal Portal2;
 
+    [Header("NUEVO FMOD: Sonido")]
+    public FMODUnity.EventReference sonidoTelefono;
+
     void Start()
     {
-        // Bucle externo: Recorre cada Empty Parent que a�adiste a la lista en el Inspector
+        // Bucle externo: Recorre cada Empty Parent que añadiste a la lista en el Inspector
         foreach (Transform grupo in gruposDeObjetos)
         {
-            // Bucle interno: Recorre cada objeto f�sico dentro de ese Empty actual
+            // Bucle interno: Recorre cada objeto físico dentro de ese Empty actual
             foreach (Transform hijo in grupo)
             {
-                // Aqu� haces tu l�gica de guardado en el diccionario
+                // Aquí haces tu lógica de guardado en el diccionario
                 posicionesIniciales.Add(hijo, (hijo.position, hijo.rotation));
             }
         }
@@ -37,6 +40,20 @@ public class ReiniciarHabitacion : MonoBehaviour, IInteractable
     public void EjecutarReset()
     {
 
+        if (!sonidoTelefono.IsNull)
+        {
+            // ◄ SOLUCIÓN: Forzamos que el sonido 3D se genere exactamente en la cámara del jugador
+            if (Camera.main != null)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot(sonidoTelefono, Camera.main.transform.position);
+            }
+            else
+            {
+                // Por si acaso la cámara principal no tiene el Tag "MainCamera", usa la posición del objeto
+                FMODUnity.RuntimeManager.PlayOneShot(sonidoTelefono, transform.position);
+            }
+        }
+
         foreach (var obj in posicionesIniciales)
         {
             Rigidbody rb = obj.Key.GetComponent<Rigidbody>();
@@ -48,7 +65,7 @@ public class ReiniciarHabitacion : MonoBehaviour, IInteractable
                 rb.angularVelocity = Vector3.zero;
                 rb.ResetInertiaTensor();
 
-                // PASO 3 (Integraci�n de tu c�digo): Reseteamos la gravedad personalizada
+                // PASO 3 (Integración de tu código): Reseteamos la gravedad personalizada
                 CambioGravedad gravedad = obj.Key.GetComponent<CambioGravedad>();
                 if (gravedad != null)
                 {

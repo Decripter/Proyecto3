@@ -136,3 +136,10 @@ MonoBehaviour:
   - {fileID: 0}
   Portal1: {fileID: 0}
   Portal2: {fileID: 0}
+  sonidoTelefono:
+    Guid:
+      Data1: -1564393601
+      Data2: 1153691262
+      Data3: 439836556
+      Data4: 963417243
+    Path: event:/freesound_community-oldphonehangup-96652
